@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Gestión de Socios</title>
+    <link rel="stylesheet" href="estilos.css">
+
+    <!-- Iconos -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="sistema">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+
+        <div class="logo">
+           <img src="/img/logo-Italy-Fitness-transparente.png" alt="Logo-ItalyFitness" class="logo-gym">
+        </div>
+        <p class="subtitulo">SISTEMA DE GESTIÓN</p>
+        <nav>
+            <a href="#">
+                <i class="fa-solid fa-gauge"></i>
+                Inicio
+            </a>
+
+            <a href="#" class="activo">
+                <i class="fa-solid fa-users"></i>
+                Socios
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-credit-card"></i>
+                Pagos
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-door-open"></i>
+                Accesos
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-box"></i>
+                Productos
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-tags"></i>
+                Promociones
+            </a>
+        </nav>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido">
+
+        <header class="encabezado">
+
+            <div>
+                <p class="seccion">SOCIOS</p>
+                <h1>Gestión de socios</h1>
+                <p class="descripcion">
+                    Registrar y administrar los socios del gimnasio.
+                </p>
+            </div>
+
+            <div class="usuario">
+                <i class="fa-solid fa-user"></i>
+                <span>Recepcionista</span>
+            </div>
+
+        </header>
+
+        <!-- FORMULARIO -->
+        <section class="panel">
+            <div class="titulo-panel">
+                <div class="icono-titulo">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div>
+                    <h2>Registrar socio</h2>
+                    <p>Ingrese los datos del nuevo socio.</p>
+                </div>
+            </div>
+            <form id="formSocio">
+                <div class="formulario">
+                    <div class="campo">
+                        <label for="nombre">Nombre</label>
+                        <input
+                                type="text"
+                                id="nombre"
+                                placeholder="Ingrese el nombre"
+                                required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="apellido">Apellido</label>
+                        <input
+                                type="text"
+                                id="apellido"
+                                placeholder="Ingrese el apellido"
+                                required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="dni">DNI</label>
+                        <input
+                                type="number"
+                                id="dni"
+                                placeholder="Ingrese el DNI"
+                                required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefono">Teléfono</label>
+                        <input
+                                type="tel"
+                                id="telefono"
+                                placeholder="Ingrese el teléfono"
+                                required>
+                    </div>
+
+                </div>
+
+                <div class="acciones-formulario">
+
+                    <button type="submit" class="btn-guardar">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Guardar socio
+                    </button>
+
+                    <button
+                            type="button"
+                            class="btn-cancelar"
+                            id="btnCancelar"
+                            hidden>
+                        Cancelar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- TABLA -->
+        <section class="panel">
+            <div class="titulo-tabla">
+
+                <div>
+                    <p class="seccion">REGISTROS</p>
+                    <h2>Socios registrados</h2>
+                </div>
+
+                <div class="cantidad">
+                    <span id="cantidadSocios">0</span>
+                    socios
+                </div>
+            </div>
+
+                <!-- BUSCAR SOCIO POR DNI -->
+                <div class="busqueda-dni">
+
+                    <div class="campo-busqueda">
+                        <label for="buscarDni">Buscar socio por DNI</label>
+
+                        <div class="input-busqueda">
+
+                            <input
+                                    type="text"
+                                    id="buscarDni"
+                                    placeholder="Ingrese el DNI del socio">
+
+                            <button
+                                    type="button"
+                                    id="btnBuscarDni"
+                                    title="Buscar socio">
+
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                Buscar
+
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <button
+                            type="button"
+                            id="btnMostrarTodos"
+                            class="btn-mostrar-todos">
+
+                        <i class="fa-solid fa-users"></i>
+                        Mostrar todos
+
+                    </button>
+
+                </div>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>DNI</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tablaSocios">
+                    <!-- Los socios se agregan mediante JavaScript -->
+                    </tbody>
+                </table>
+
+                <div class="tabla-vacia" id="tablaVacia">
+                    <i class="fa-solid fa-users"></i>
+                    <p>
+                        No hay socios registrados.
+                    </p>
+
+                    <span>
+                            Utilice el formulario para agregar un nuevo socio.
+                        </span>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="socios.js"></script>
+</body>
+</html>
