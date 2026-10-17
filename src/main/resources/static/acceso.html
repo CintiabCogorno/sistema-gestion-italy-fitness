@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Italy Fitness | Control de Acceso</title>
+<link rel="stylesheet" href="acceso.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<main class="pantalla">
+<div class="fondo" aria-hidden="true"></div>
+    <div class="velo" aria-hidden="true"></div>
+
+    <div class="logo_a">
+        <img src="/img/logo-Italy-Fitness-transparente.png"
+             alt="Logo Italy Fitness"
+             class="logo-acceso">
+    </div>
+
+    <header class="superior">
+     <a class="marca" href="index.html"><small>SISTEMA DE GESTION</small></a>
+<div class="reloj"><div>
+    <i class="fa-regular fa-calendar"></i>
+    <span id="fechaActual"></span></div><strong>
+    <i class="fa-regular fa-clock"></i>
+    <span id="horaActual"></span></strong></div>
+</header>
+
+    <section class="panel">
+<div class="titulo">
+    <div class="icono"><i class="fa-solid fa-fingerprint"></i></div>
+    <div>
+        <small>CONTROL DE INGRESO</small>
+        <h2> Ingresá tu DNI </h2>
+    </div>
+</div>
+<form id="formAcceso">
+<div class="campo">
+    <input id="dniAcceso" type="text" inputmode="numeric" maxlength="8" pattern="[0-9]{7,8}" placeholder="Ej.: 30123456" required>
+</div>
+<small class="ayuda">Ingresá el DNI sin puntos ni espacios.</small>
+<button id="btnValidar" type="submit">
+    <span>VALIDAR ACCESO </span><i class="fa-solid fa-arrow-right"></i>
+</button>
+</form>
+<div id="resultadoAcceso" class="resultado"
+     role="status" aria-live="polite" hidden>
+
+    <!-- ESPACIO RESERVADO PARA LA FOTO DEL SOCIO -->
+    <div class="foto-socio">
+        <i class="fa-solid fa-user"></i>
+        <!-- En el futuro, agregar aquí la fotografía del socio -->
+    </div>
+
+<div id="iconoResultado" class="resultado-icono"></div>
+    <div><h3 id="tituloResultado"></h3><p id="mensajeResultado"></p>
+        <small id="detalleResultado"></small>
+    </div>
+</div>
+</section>
+<footer>
+
+</footer>
+</main>
+<script src="acceso.js"></script>
+</body>
+</html>

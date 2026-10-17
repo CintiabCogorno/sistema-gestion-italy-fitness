@@ -2,6 +2,8 @@ package com.gimnasio.italyFitnessGymControl.dominio;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "socio")
@@ -12,6 +14,16 @@ public class Socio extends Persona {
 
     @Column(nullable = false, length = 20)
     private String estado; // ACTIVO, INACTIVO
+
+
+
+    @OneToMany(mappedBy = "socio")
+    private List<Pago> pagos = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "socio")
+    private List<Acceso> accesos = new ArrayList<>();
+
 
     public Socio() {
         super();
@@ -24,7 +36,21 @@ public class Socio extends Persona {
         this.estado = estado;
     }
 
-    // TODO: cuando agreguemos las relaciones, acá van las listas de Pago y Acceso
+    public List<Pago> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
+    }
+
+    public List<Acceso> getAccesos() {
+        return accesos;
+    }
+
+    public void setAccesos(List<Acceso> accesos) {
+        this.accesos = accesos;
+    }
 
     public boolean puedeIngresar() {
         // Lógica pendiente: dependerá de la relación con Pago (última cuota vigente)

@@ -1,5 +1,6 @@
 package com.gimnasio.italyFitnessGymControl.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -20,7 +21,20 @@ public class Acceso {
     @Column(length = 100)
     private String motivo;
 
-    // TODO: cuando agreguemos las relaciones, acá va la referencia al Socio (quien ingresa con su DNI)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "socio_id")
+    @JsonIgnoreProperties({"pagos", "accesos"})
+    private Socio socio;
+
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
+    }
+
 
     public Acceso() {
     }

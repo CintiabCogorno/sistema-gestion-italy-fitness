@@ -24,7 +24,19 @@ public class Pago {
     @Column(nullable = false)
     private boolean anulado;
 
-    // TODO: cuando agreguemos las relaciones, acá van las referencias al Socio y a la Actividad que se está pagando
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "socio_id")
+    private Socio socio;
+
+    public Socio getSocio() {
+        return socio;
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
+    }
+
 
     public Pago() {
     }

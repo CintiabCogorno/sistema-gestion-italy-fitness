@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Italy Fitness - Gestión de Socios</title>
+    <title>Italy Fitness - Sistema de Gestión</title>
+
     <link rel="stylesheet" href="estilos.css">
 
     <!-- Iconos -->
@@ -14,53 +14,57 @@
 
 <body>
 
-<div class="sistema">
+<!-- BARRA LATERAL -->
+<aside class="sidebar">
+    <div class="logo">
+        <img src="/img/logo-Italy-Fitness-transparente.png"
+             alt="Logo Italy Fitness"
+             class="logo-gym">
+    </div>
 
-    <!-- BARRA LATERAL -->
-    <aside class="sidebar">
+    <p class="subtitulo">SISTEMA DE GESTIÓN</p>
 
-        <div class="logo">
-           <img src="/img/logo-Italy-Fitness-transparente.png" alt="Logo-ItalyFitness" class="logo-gym">
-        </div>
-        <p class="subtitulo">SISTEMA DE GESTIÓN</p>
-        <nav>
-            <a href="#">
-                <i class="fa-solid fa-gauge"></i>
-                Inicio
-            </a>
+    <nav>
+        <a href="#">
+            <i class="fa-solid fa-gauge"></i>
+            Inicio
+        </a>
 
-            <a href="#" class="activo">
-                <i class="fa-solid fa-users"></i>
-                Socios
-            </a>
+        <a href="#socios" id="navSocios" class="activo">
+            <i class="fa-solid fa-users"></i>
+            Socios
+        </a>
 
-            <a href="#">
-                <i class="fa-solid fa-credit-card"></i>
-                Pagos
-            </a>
+        <a href="#">
+            <i class="fa-solid fa-credit-card"></i>
+            Pagos
+        </a>
 
-            <a href="#">
-                <i class="fa-solid fa-door-open"></i>
-                Accesos
-            </a>
+        <a href="#accesos" id="navAccesos">
+            <i class="fa-solid fa-door-open"></i>
+            Accesos
+        </a>
 
-            <a href="#">
-                <i class="fa-solid fa-box"></i>
-                Productos
-            </a>
+        <a href="#productos" id="navProductos">
+            <i class="fa-solid fa-box"></i>
+            Productos
+        </a>
 
-            <a href="#">
-                <i class="fa-solid fa-tags"></i>
-                Promociones
-            </a>
-        </nav>
-    </aside>
+        <a href="#">
+            <i class="fa-solid fa-tags"></i>
+            Promociones
+        </a>
+    </nav>
+</aside>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="contenido">
+<!-- CONTENIDO PRINCIPAL -->
+<main class="contenido">
 
+    <!-- VISTA DE SOCIOS -->
+    <div id="vistaSocios">
+
+        <!-- ENCABEZADO DE SOCIOS -->
         <header class="encabezado">
-
             <div>
                 <p class="seccion">SOCIOS</p>
                 <h1>Gestión de socios</h1>
@@ -73,20 +77,21 @@
                 <i class="fa-solid fa-user"></i>
                 <span>Recepcionista</span>
             </div>
-
         </header>
 
-        <!-- FORMULARIO -->
+        <!-- FORMULARIO DE SOCIOS -->
         <section class="panel">
             <div class="titulo-panel">
                 <div class="icono-titulo">
                     <i class="fa-solid fa-user-plus"></i>
                 </div>
+
                 <div>
                     <h2>Registrar socio</h2>
                     <p>Ingrese los datos del nuevo socio.</p>
                 </div>
             </div>
+
             <form id="formSocio">
                 <div class="formulario">
                     <div class="campo">
@@ -124,11 +129,9 @@
                                 placeholder="Ingrese el teléfono"
                                 required>
                     </div>
-
                 </div>
 
                 <div class="acciones-formulario">
-
                     <button type="submit" class="btn-guardar">
                         <i class="fa-solid fa-floppy-disk"></i>
                         Guardar socio
@@ -141,18 +144,13 @@
                             hidden>
                         Cancelar
                     </button>
-
                 </div>
-
             </form>
-
         </section>
 
-
-        <!-- TABLA -->
+        <!-- TABLA DE SOCIOS -->
         <section class="panel">
             <div class="titulo-tabla">
-
                 <div>
                     <p class="seccion">REGISTROS</p>
                     <h2>Socios registrados</h2>
@@ -164,43 +162,35 @@
                 </div>
             </div>
 
-                <!-- BUSCAR SOCIO POR DNI -->
-                <div class="busqueda-dni">
+            <!-- BUSCAR SOCIO POR DNI -->
+            <div class="busqueda-dni">
+                <div class="campo-busqueda">
+                    <label for="buscarDni">Buscar socio por DNI</label>
 
-                    <div class="campo-busqueda">
-                        <label for="buscarDni">Buscar socio por DNI</label>
+                    <div class="input-busqueda">
+                        <input
+                                type="text"
+                                id="buscarDni"
+                                placeholder="Ingrese el DNI del socio">
 
-                        <div class="input-busqueda">
-
-                            <input
-                                    type="text"
-                                    id="buscarDni"
-                                    placeholder="Ingrese el DNI del socio">
-
-                            <button
-                                    type="button"
-                                    id="btnBuscarDni"
-                                    title="Buscar socio">
-
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                                Buscar
-
-                            </button>
-
-                        </div>
+                        <button
+                                type="button"
+                                id="btnBuscarDni"
+                                title="Buscar socio">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Buscar
+                        </button>
                     </div>
-
-                    <button
-                            type="button"
-                            id="btnMostrarTodos"
-                            class="btn-mostrar-todos">
-
-                        <i class="fa-solid fa-users"></i>
-                        Mostrar todos
-
-                    </button>
-
                 </div>
+
+                <button
+                        type="button"
+                        id="btnMostrarTodos"
+                        class="btn-mostrar-todos">
+                    <i class="fa-solid fa-users"></i>
+                    Mostrar todos
+                </button>
+            </div>
 
             <div class="tabla-contenedor">
                 <table>
@@ -221,19 +211,192 @@
 
                 <div class="tabla-vacia" id="tablaVacia">
                     <i class="fa-solid fa-users"></i>
-                    <p>
-                        No hay socios registrados.
-                    </p>
-
+                    <p>No hay socios registrados.</p>
                     <span>
                             Utilice el formulario para agregar un nuevo socio.
                         </span>
                 </div>
             </div>
         </section>
-    </main>
-</div>
 
+    </div>
+    <!-- FIN DE VISTA DE SOCIOS -->
+
+
+    <!-- VISTA DE PRODUCTOS -->
+    <div id="vistaProductos" hidden>
+
+        <!-- ENCABEZADO DE PRODUCTOS -->
+        <header class="encabezado">
+            <div>
+                <p class="seccion">PRODUCTOS</p>
+                <h1>Gestión de productos</h1>
+                <p class="descripcion">
+                    Registrar y administrar los productos del gimnasio.
+                </p>
+            </div>
+
+            <div class="usuario">
+                <i class="fa-solid fa-user"></i>
+                <span>Recepcionista</span>
+            </div>
+        </header>
+
+        <!-- FORMULARIO DE PRODUCTOS -->
+        <section class="panel">
+            <div class="titulo-panel">
+                <div class="icono-titulo">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+
+                <div>
+                    <h2 id="tituloFormularioProducto">Registrar producto</h2>
+                    <p>Ingrese los datos del producto.</p>
+                </div>
+            </div>
+
+            <form id="formProducto">
+                <div class="formulario">
+                    <div class="campo">
+                        <label for="nombreProducto">Nombre</label>
+                        <input
+                                type="text"
+                                id="nombreProducto"
+                                maxlength="100"
+                                placeholder="Nombre del producto"
+                                required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="descripcionProducto">Descripción</label>
+                        <input
+                                type="text"
+                                id="descripcionProducto"
+                                maxlength="100"
+                                placeholder="Descripción"
+                                required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="precioProducto">Precio ($)</label>
+                        <input
+                                type="number"
+                                id="precioProducto"
+                                min="0.01"
+                                step="0.01"
+                                placeholder="0.00"
+                                required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="stockProducto">Stock</label>
+                        <input
+                                type="number"
+                                id="stockProducto"
+                                min="0"
+                                step="1"
+                                placeholder="0"
+                                required>
+                    </div>
+                </div>
+
+                <div class="acciones-formulario">
+                    <button
+                            type="submit"
+                            class="btn-guardar"
+                            id="btnGuardarProducto">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        Guardar producto
+                    </button>
+
+                    <button
+                            type="button"
+                            class="btn-cancelar"
+                            id="btnCancelarProducto"
+                            hidden>
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- LISTADO DE PRODUCTOS -->
+        <section class="panel">
+            <div class="titulo-tabla">
+                <div>
+                    <p class="seccion">INVENTARIO</p>
+                    <h2>Productos registrados</h2>
+                </div>
+
+                <div class="cantidad">
+                    <span id="cantidadProductos">0</span>
+                    productos
+                </div>
+            </div>
+
+            <!-- BUSCAR PRODUCTO POR NOMBRE -->
+            <div class="busqueda-dni">
+                <div class="campo-busqueda">
+                    <label for="buscarNombreProducto">
+                        Buscar producto por nombre
+                    </label>
+
+                    <div class="input-busqueda">
+                        <input
+                                type="text"
+                                id="buscarNombreProducto"
+                                placeholder="Ingrese el nombre">
+
+                        <button type="button" id="btnBuscarProducto">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <button
+                        type="button"
+                        id="btnMostrarProductos"
+                        class="btn-mostrar-todos">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    Mostrar todos
+                </button>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tablaProductos"></tbody>
+                </table>
+
+                <div class="tabla-vacia" id="tablaProductosVacia">
+                    <i class="fa-solid fa-box-open"></i>
+                    <p>No hay productos registrados.</p>
+                    <span>
+                            Utilice el formulario para agregar un producto.
+                        </span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- FIN DE VISTA DE PRODUCTOS -->
+
+</main>
+
+<!-- SCRIPTS -->
 <script src="socios.js"></script>
+<script src="productos.js"></script>
+<script src="navegacion.js"></script>
+
 </body>
 </html>

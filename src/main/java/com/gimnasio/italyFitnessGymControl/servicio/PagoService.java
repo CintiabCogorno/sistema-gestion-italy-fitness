@@ -69,5 +69,10 @@ public class PagoService implements IPagoService {
         pago.setAnulado(true);
         return pagoRepository.save(pago);
     }
+
+    @Override
+    public boolean tieneCuotaVigente(Long idSocio) {
+        return false;
+    }
 }
 

@@ -14,4 +14,5 @@ public interface IPagoService {
     Pago buscarPago(Long id);
     Pago editarPago(Long id, Pago datosActualizados);
     Pago anularPago(Long id);
+    boolean tieneCuotaVigente(Long idSocio);
 }

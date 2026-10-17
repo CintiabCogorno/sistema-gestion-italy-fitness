@@ -40,7 +40,7 @@ public class ProductoController {
         return ResponseEntity.ok(producto);
     }
 
-    @GetMapping("/{nombre}")
+    @GetMapping("/buscar")
     public List<Producto> buscarPorNombre(@RequestParam String nombre) {
         return productoServ.buscarPorNombre(nombre);
     }
