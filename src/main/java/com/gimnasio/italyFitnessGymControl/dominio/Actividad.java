@@ -1,7 +1,10 @@
 package com.gimnasio.italyFitnessGymControl.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "actividad")
@@ -23,7 +26,12 @@ public class Actividad {
     @Column(nullable = false)
     private boolean disponible;
 
-    // TODO: cuando agreguemos las relaciones, acá van la lista de Socio (inscriptos) y de Pago
+    // Socios inscriptos en esta actividad. El lado dueño de la relación es Socio.actividades
+    @ManyToMany(mappedBy = "actividades")
+    @JsonIgnore
+    private Set<Socio> socios = new HashSet<>();
+
+    // TODO: cuando agreguemos la relación con Pago, va acá la lista de Pago
 
     public Actividad() {
     }
@@ -73,5 +81,9 @@ public class Actividad {
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+
+    public Set<Socio> getSocios() {
+        return socios;
     }
 }

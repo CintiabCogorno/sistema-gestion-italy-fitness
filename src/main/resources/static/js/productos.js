@@ -315,3 +315,10 @@ async function aumentarStockProducto(producto) {
 
 // Permite que la navegación cargue los productos al abrir la vista.
 window.cargarProductos = cargarProductos;
+
+// Cada página carga sola sus datos al abrirse.
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById("vistaProductos")) {
+        cargarProductos();
+    }
+});

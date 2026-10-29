@@ -1,0 +1,183 @@
+
+
+.inicio-metricas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.inicio-metrica {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    padding: 22px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+}
+
+.inicio-metrica-titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--texto-suave);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .7px;
+}
+
+.inicio-metrica-titulo i {
+    color: var(--verde);
+}
+
+.inicio-metrica strong {
+    color: var(--verde);
+    font-size: 34px;
+}
+
+.inicio-metrica small {
+    color: var(--texto-tenue);
+    font-size: 12px;
+}
+
+.inicio-seccion {
+    margin-bottom: 14px;
+    color: var(--texto);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.inicio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.inicio-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    color: var(--blanco);
+    text-decoration: none;
+    transition: .2s;
+}
+
+.inicio-card:hover {
+    border-color: var(--verde);
+    transform: translateY(-2px);
+}
+
+.inicio-card i {
+    color: var(--verde);
+    font-size: 24px;
+}
+
+.inicio-card strong {
+    font-size: 16px;
+}
+
+.inicio-card span {
+    color: var(--texto-suave);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Productos en stock */
+.inicio-stock {
+    margin-bottom: 28px;
+}
+
+.inicio-stock .tabla-contenedor {
+    max-height: 360px;
+    overflow: auto;
+}
+
+.inicio-stock table {
+    min-width: 480px;
+    table-layout: auto;
+}
+
+.inicio-stock th,
+.inicio-stock td {
+    width: auto;
+    text-align: left;
+}
+
+.inicio-stock th:nth-child(n+2),
+.inicio-stock td:nth-child(n+2) {
+    text-align: right;
+}
+
+.stock-bajo {
+    color: var(--rojo-texto);
+    font-weight: 700;
+}
+
+.stock-ok {
+    color: var(--verde);
+    font-weight: 700;
+}
+
+.inicio-vacio {
+    padding: 24px;
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+@media (max-width: 800px) {
+    .inicio-metricas {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ====== Footer  Italy Fitness Gym */
+.site-footer {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    color: #de0bb0;
+    background: #000000;
+    border-top: 1px solid #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.68rem;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.site-footer__logo {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    object-fit: contain;
+}
+.site-footer__text {
+    margin: 0;
+}
+
+@media (max-width: 420px) {
+    .site-footer {
+        gap: 0.3rem;
+        padding-inline: 0.4rem;
+        font-size: 0.6rem;
+    }
+
+    .site-footer__logo {
+        width: 16px;
+        height: 16px;
+        flex-basis: 16px;
+    }
+}

@@ -3,400 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Italy Fitness - Sistema de Gestión</title>
-
-    <link rel="stylesheet" href="estilos.css">
-
-    <!-- Iconos -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Italy Fitness - Inicio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/tema.css">
+    <link rel="stylesheet" href="styles/estilos.css">
+    <link rel="stylesheet" href="styles/inicio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-
 <body>
-
-<!-- BARRA LATERAL -->
 <aside class="sidebar">
     <div class="logo">
-        <img src="/img/logo-Italy-Fitness-transparente.png"
-             alt="Logo Italy Fitness"
-             class="logo-gym">
+        <img src="img/logo-Italy-Fitness-transparente.png" alt="Logo Italy Fitness" class="logo-gym">
     </div>
 
     <p class="subtitulo">SISTEMA DE GESTIÓN</p>
-
     <nav>
-        <a href="#">
-            <i class="fa-solid fa-gauge"></i>
-            Inicio
-        </a>
-
-        <a href="#socios" id="navSocios" class="activo">
-            <i class="fa-solid fa-users"></i>
-            Socios
-        </a>
-
-        <a href="#">
-            <i class="fa-solid fa-credit-card"></i>
-            Pagos
-        </a>
-
-        <a href="#accesos" id="navAccesos">
-            <i class="fa-solid fa-door-open"></i>
-            Accesos
-        </a>
-
-        <a href="#productos" id="navProductos">
-            <i class="fa-solid fa-box"></i>
-            Productos
-        </a>
-
-        <a href="#">
-            <i class="fa-solid fa-tags"></i>
-            Promociones
-        </a>
+        <a href="index.html" class="activo"><i class="fa-solid fa-gauge"></i> Inicio</a>
+        <a href="pages/socios.html" id="navSocios"><i class="fa-solid fa-users"></i> Socios</a>
+        <a href="pages/pagos.html" id="navPagos"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+        <a href="pages/actividades.html" id="navActividades"><i class="fa-solid fa-dumbbell"></i> Actividades</a>
+        <a href="pages/acceso.html" id="navAccesos"><i class="fa-solid fa-door-open"></i> Acceso</a>
+        <a href="pages/productos.html" id="navProductos"><i class="fa-solid fa-box"></i> Productos</a>
+        <a href="pages/ventas.html" id="navVentas"><i class="fa-solid fa-cash-register"></i> Ventas</a>
     </nav>
 </aside>
 
-<!-- CONTENIDO PRINCIPAL -->
 <main class="contenido">
+    <header class="encabezado">
+        <div>
+            <p class="seccion">INICIO</p>
+            <h1>ITALY FITNESS GYM CONTROL</h1>
+            <p class="descripcion">Elegí una sección para empezar.</p>
+        </div>
 
-    <!-- VISTA DE SOCIOS -->
-    <div id="vistaSocios">
+        <div class="usuario">
+            <i class="fa-solid fa-user"></i>
+            <span>Recepcionista</span>
+        </div>
+    </header>
 
-        <!-- ENCABEZADO DE SOCIOS -->
-        <header class="encabezado">
+    <!-- RESUMEN -->
+    <section class="inicio-metricas">
+        <div class="inicio-metrica">
+            <span class="inicio-metrica-titulo"><i class="fa-solid fa-users"></i> SOCIOS REGISTRADOS</span>
+            <strong id="inicioSocios">—</strong>
+            <small id="inicioSociosDetalle">Cargando...</small>
+        </div>
+
+        <div class="inicio-metrica">
+            <span class="inicio-metrica-titulo"><i class="fa-solid fa-door-open"></i> INGRESOS DE HOY</span>
+            <strong id="inicioIngresos">—</strong>
+            <small id="inicioIngresosDetalle">Cargando...</small>
+        </div>
+
+        <div class="inicio-metrica">
+            <span class="inicio-metrica-titulo"><i class="fa-solid fa-box"></i> PRODUCTOS EN STOCK</span>
+            <strong id="inicioProductos">—</strong>
+            <small id="inicioProductosDetalle">Cargando...</small>
+        </div>
+    </section>
+
+    <!-- PRODUCTOS EN STOCK -->
+    <section class="panel inicio-stock">
+        <div class="titulo-tabla">
             <div>
-                <p class="seccion">SOCIOS</p>
-                <h1>Gestión de socios</h1>
-                <p class="descripcion">
-                    Registrar y administrar los socios del gimnasio.
-                </p>
+                <p class="seccion">STORE DEL GIMNASIO</p>
+                <h2>Productos en stock</h2>
             </div>
+        </div>
 
-            <div class="usuario">
-                <i class="fa-solid fa-user"></i>
-                <span>Recepcionista</span>
-            </div>
-        </header>
+        <div class="tabla-contenedor" id="inicioStockTabla">
+            <table>
+                <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                </tr>
+                </thead>
+                <tbody id="inicioTablaStock"></tbody>
+            </table>
+        </div>
 
-        <!-- FORMULARIO DE SOCIOS -->
-        <section class="panel">
-            <div class="titulo-panel">
-                <div class="icono-titulo">
-                    <i class="fa-solid fa-user-plus"></i>
-                </div>
+        <p class="inicio-vacio" id="inicioStockVacio" hidden>No hay productos con stock disponible.</p>
+    </section>
 
-                <div>
-                    <h2>Registrar socio</h2>
-                    <p>Ingrese los datos del nuevo socio.</p>
-                </div>
-            </div>
-
-            <form id="formSocio">
-                <div class="formulario">
-                    <div class="campo">
-                        <label for="nombre">Nombre</label>
-                        <input
-                                type="text"
-                                id="nombre"
-                                placeholder="Ingrese el nombre"
-                                required>
-                    </div>
-
-                    <div class="campo">
-                        <label for="apellido">Apellido</label>
-                        <input
-                                type="text"
-                                id="apellido"
-                                placeholder="Ingrese el apellido"
-                                required>
-                    </div>
-
-                    <div class="campo">
-                        <label for="dni">DNI</label>
-                        <input
-                                type="number"
-                                id="dni"
-                                placeholder="Ingrese el DNI"
-                                required>
-                    </div>
-
-                    <div class="campo">
-                        <label for="telefono">Teléfono</label>
-                        <input
-                                type="tel"
-                                id="telefono"
-                                placeholder="Ingrese el teléfono"
-                                required>
-                    </div>
-                </div>
-
-                <div class="acciones-formulario">
-                    <button type="submit" class="btn-guardar">
-                        <i class="fa-solid fa-floppy-disk"></i>
-                        Guardar socio
-                    </button>
-
-                    <button
-                            type="button"
-                            class="btn-cancelar"
-                            id="btnCancelar"
-                            hidden>
-                        Cancelar
-                    </button>
-                </div>
-            </form>
-        </section>
-
-        <!-- TABLA DE SOCIOS -->
-        <section class="panel">
-            <div class="titulo-tabla">
-                <div>
-                    <p class="seccion">REGISTROS</p>
-                    <h2>Socios registrados</h2>
-                </div>
-
-                <div class="cantidad">
-                    <span id="cantidadSocios">0</span>
-                    socios
-                </div>
-            </div>
-
-            <!-- BUSCAR SOCIO POR DNI -->
-            <div class="busqueda-dni">
-                <div class="campo-busqueda">
-                    <label for="buscarDni">Buscar socio por DNI</label>
-
-                    <div class="input-busqueda">
-                        <input
-                                type="text"
-                                id="buscarDni"
-                                placeholder="Ingrese el DNI del socio">
-
-                        <button
-                                type="button"
-                                id="btnBuscarDni"
-                                title="Buscar socio">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            Buscar
-                        </button>
-                    </div>
-                </div>
-
-                <button
-                        type="button"
-                        id="btnMostrarTodos"
-                        class="btn-mostrar-todos">
-                    <i class="fa-solid fa-users"></i>
-                    Mostrar todos
-                </button>
-            </div>
-
-            <div class="tabla-contenedor">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>DNI</th>
-                        <th>Teléfono</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
-
-                    <tbody id="tablaSocios">
-                    <!-- Los socios se agregan mediante JavaScript -->
-                    </tbody>
-                </table>
-
-                <div class="tabla-vacia" id="tablaVacia">
-                    <i class="fa-solid fa-users"></i>
-                    <p>No hay socios registrados.</p>
-                    <span>
-                            Utilice el formulario para agregar un nuevo socio.
-                        </span>
-                </div>
-            </div>
-        </section>
-
-    </div>
-    <!-- FIN DE VISTA DE SOCIOS -->
-
-
-    <!-- VISTA DE PRODUCTOS -->
-    <div id="vistaProductos" hidden>
-
-        <!-- ENCABEZADO DE PRODUCTOS -->
-        <header class="encabezado">
-            <div>
-                <p class="seccion">PRODUCTOS</p>
-                <h1>Gestión de productos</h1>
-                <p class="descripcion">
-                    Registrar y administrar los productos del gimnasio.
-                </p>
-            </div>
-
-            <div class="usuario">
-                <i class="fa-solid fa-user"></i>
-                <span>Recepcionista</span>
-            </div>
-        </header>
-
-        <!-- FORMULARIO DE PRODUCTOS -->
-        <section class="panel">
-            <div class="titulo-panel">
-                <div class="icono-titulo">
-                    <i class="fa-solid fa-box-open"></i>
-                </div>
-
-                <div>
-                    <h2 id="tituloFormularioProducto">Registrar producto</h2>
-                    <p>Ingrese los datos del producto.</p>
-                </div>
-            </div>
-
-            <form id="formProducto">
-                <div class="formulario">
-                    <div class="campo">
-                        <label for="nombreProducto">Nombre</label>
-                        <input
-                                type="text"
-                                id="nombreProducto"
-                                maxlength="100"
-                                placeholder="Nombre del producto"
-                                required>
-                    </div>
-
-                    <div class="campo">
-                        <label for="descripcionProducto">Descripción</label>
-                        <input
-                                type="text"
-                                id="descripcionProducto"
-                                maxlength="100"
-                                placeholder="Descripción"
-                                required>
-                    </div>
-
-                    <div class="campo">
-                        <label for="precioProducto">Precio ($)</label>
-                        <input
-                                type="number"
-                                id="precioProducto"
-                                min="0.01"
-                                step="0.01"
-                                placeholder="0.00"
-                                required>
-                    </div>
-
-                    <div class="campo">
-                        <label for="stockProducto">Stock</label>
-                        <input
-                                type="number"
-                                id="stockProducto"
-                                min="0"
-                                step="1"
-                                placeholder="0"
-                                required>
-                    </div>
-                </div>
-
-                <div class="acciones-formulario">
-                    <button
-                            type="submit"
-                            class="btn-guardar"
-                            id="btnGuardarProducto">
-                        <i class="fa-solid fa-floppy-disk"></i>
-                        Guardar producto
-                    </button>
-
-                    <button
-                            type="button"
-                            class="btn-cancelar"
-                            id="btnCancelarProducto"
-                            hidden>
-                        Cancelar
-                    </button>
-                </div>
-            </form>
-        </section>
-
-        <!-- LISTADO DE PRODUCTOS -->
-        <section class="panel">
-            <div class="titulo-tabla">
-                <div>
-                    <p class="seccion">INVENTARIO</p>
-                    <h2>Productos registrados</h2>
-                </div>
-
-                <div class="cantidad">
-                    <span id="cantidadProductos">0</span>
-                    productos
-                </div>
-            </div>
-
-            <!-- BUSCAR PRODUCTO POR NOMBRE -->
-            <div class="busqueda-dni">
-                <div class="campo-busqueda">
-                    <label for="buscarNombreProducto">
-                        Buscar producto por nombre
-                    </label>
-
-                    <div class="input-busqueda">
-                        <input
-                                type="text"
-                                id="buscarNombreProducto"
-                                placeholder="Ingrese el nombre">
-
-                        <button type="button" id="btnBuscarProducto">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            Buscar
-                        </button>
-                    </div>
-                </div>
-
-                <button
-                        type="button"
-                        id="btnMostrarProductos"
-                        class="btn-mostrar-todos">
-                    <i class="fa-solid fa-boxes-stacked"></i>
-                    Mostrar todos
-                </button>
-            </div>
-
-            <div class="tabla-contenedor">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
-
-                    <tbody id="tablaProductos"></tbody>
-                </table>
-
-                <div class="tabla-vacia" id="tablaProductosVacia">
-                    <i class="fa-solid fa-box-open"></i>
-                    <p>No hay productos registrados.</p>
-                    <span>
-                            Utilice el formulario para agregar un producto.
-                        </span>
-                </div>
-            </div>
-        </section>
-
-    </div>
-    <!-- FIN DE VISTA DE PRODUCTOS -->
-
+    <p class="inicio-seccion">ACCESOS RÁPIDOS</p>
+    <section class="inicio-grid">
+        <a class="inicio-card" href="pages/socios.html">
+            <i class="fa-solid fa-users"></i>
+            <strong>Socios</strong>
+            <span>Alta de socios, registro de pagos y asignación de actividades.</span>
+        </a>
+        <a class="inicio-card" href="pages/pagos.html">
+            <i class="fa-solid fa-credit-card"></i>
+            <strong>Pagos</strong>
+            <span>Historial de cuotas, edición y anulación de pagos.</span>
+        </a>
+        <a class="inicio-card" href="pages/actividades.html">
+            <i class="fa-solid fa-dumbbell"></i>
+            <strong>Actividades</strong>
+            <span>Musculación, yoga y el resto de las actividades del gimnasio.</span>
+        </a>
+        <a class="inicio-card" href="pages/acceso.html">
+            <i class="fa-solid fa-door-open"></i>
+            <strong>Acceso</strong>
+            <span>Control de ingreso de los socios por DNI.</span>
+        </a>
+        <a class="inicio-card" href="pages/productos.html">
+            <i class="fa-solid fa-box"></i>
+            <strong>Productos</strong>
+            <span>Catálogo y stock de los productos del gimnasio.</span>
+        </a>
+        <a class="inicio-card" href="pages/ventas.html">
+            <i class="fa-solid fa-cash-register"></i>
+            <strong>Ventas</strong>
+            <span>Registrar ventas y consultar el historial.</span>
+        </a>
+    </section>
 </main>
 
-<!-- SCRIPTS -->
-<script src="socios.js"></script>
-<script src="productos.js"></script>
-<script src="navegacion.js"></script>
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
 
+<script src="js/inicio.js"></script>
 </body>
 </html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Gestión de Productos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/tema.css">
+    <link rel="stylesheet" href="../styles/estilos.css">
+    <link rel="stylesheet" href="../styles/actividades.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<aside class="sidebar">
+    <div class="logo">
+        <img src="../img/logo-Italy-Fitness-transparente.png" alt="Logo Italy Fitness" class="logo-gym">
+    </div>
+
+    <p class="subtitulo">SISTEMA DE GESTIÓN</p>
+    <nav>
+        <a href="../index.html"><i class="fa-solid fa-gauge"></i> Inicio</a>
+        <a href="./socios.html" id="navSocios"><i class="fa-solid fa-users"></i> Socios</a>
+        <a href="./pagos.html" id="navPagos"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+        <a href="./actividades.html" id="navActividades"><i class="fa-solid fa-dumbbell"></i> Actividades</a>
+        <a href="./acceso.html" id="navAccesos"><i class="fa-solid fa-door-open"></i> Acceso</a>
+        <a href="./productos.html" id="navProductos" class="activo"><i class="fa-solid fa-box"></i> Productos</a>
+        <a href="./ventas.html" id="navVentas"><i class="fa-solid fa-cash-register"></i> Ventas</a>
+    </nav>
+</aside>
+<main class="contenido">
+<!-- VISTA DE PRODUCTOS -->
+<div id="vistaProductos">
+
+    <!-- ENCABEZADO DE PRODUCTOS -->
+    <header class="encabezado">
+        <div>
+            <p class="seccion">PRODUCTOS</p>
+            <h1>GESTION DE PRODUCTOS</h1>
+            <p class="descripcion">
+                Registrar y administrar los productos del gimnasio.
+            </p>
+        </div>
+
+        <div class="usuario">
+            <i class="fa-solid fa-user"></i>
+            <span>Recepcionista</span>
+        </div>
+    </header>
+
+    <!-- FORMULARIO DE PRODUCTOS -->
+    <section class="panel">
+        <div class="titulo-panel">
+            <div class="icono-titulo"> </div>
+
+            <div>
+                <h2 id="tituloFormularioProducto">REGRISTRAR PRODUCTO</h2>
+                <p>Ingrese los datos del producto.</p>
+            </div>
+        </div>
+
+        <form id="formProducto">
+            <div class="formulario">
+                <div class="campo">
+                    <label for="nombreProducto">Nombre</label>
+                    <input
+                            type="text"
+                            id="nombreProducto"
+                            maxlength="100"
+                            placeholder="Nombre del producto"
+                            required>
+                </div>
+
+                <div class="campo">
+                    <label for="descripcionProducto">Descripción</label>
+                    <input
+                            type="text"
+                            id="descripcionProducto"
+                            maxlength="100"
+                            placeholder="Descripción"
+                            required>
+                </div>
+
+                <div class="campo">
+                    <label for="precioProducto">Precio ($)</label>
+                    <input
+                            type="number"
+                            id="precioProducto"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="0.00"
+                            required>
+                </div>
+
+                <div class="campo">
+                    <label for="stockProducto">Stock</label>
+                    <input
+                            type="number"
+                            id="stockProducto"
+                            min="0"
+                            step="1"
+                            placeholder="0"
+                            required>
+                </div>
+            </div>
+
+            <div class="acciones-formulario">
+                <button
+                        type="submit"
+                        class="btn-guardar"
+                        id="btnGuardarProducto">
+                    Guardar producto
+                </button>
+
+                <button
+                        type="button"
+                        class="btn-cancelar"
+                        id="btnCancelarProducto"
+                        hidden>
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- LISTADO DE PRODUCTOS -->
+    <section class="panel">
+        <div class="titulo-tabla">
+            <div>
+                <p class="seccion">INVENTARIO</p>
+                <h2>Productos registrados</h2>
+            </div>
+
+            <div class="cantidad">
+                <span id="cantidadProductos">0</span>
+                productos
+            </div>
+        </div>
+
+        <!-- BUSCAR PRODUCTO POR NOMBRE -->
+        <div class="busqueda-dni">
+            <div class="campo-busqueda">
+                <label for="buscarNombreProducto">
+                    Buscar producto por nombre
+                </label>
+
+                <div class="input-busqueda">
+                    <input
+                            type="text"
+                            id="buscarNombreProducto"
+                            placeholder="Ingrese el nombre">
+
+                    <button type="button" id="btnBuscarProducto">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Buscar
+                    </button>
+                </div>
+            </div>
+
+            <button
+                    type="button"
+                    id="btnMostrarProductos"
+                    class="btn-mostrar-todos">
+                Mostrar todos
+            </button>
+        </div>
+
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody id="tablaProductos"></tbody>
+            </table>
+
+            <div class="tabla-vacia" id="tablaProductosVacia">
+                <p>No hay productos registrados.</p>
+                <span>
+                            Utilice el formulario para agregar un producto.
+                        </span>
+            </div>
+        </div>
+    </section>
+
+</div>
+</main>
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
+
+<script src="../js/productos.js"></script>
+</body>
+</html>

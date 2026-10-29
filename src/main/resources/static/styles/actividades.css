@@ -1,0 +1,364 @@
+
+
+#vistaActividades [hidden] {
+    display: none !important;
+}
+
+#vistaActividades .icono-titulo {
+    justify-content: center;
+}
+
+/* Textos que en el resto del sistema son gris oscuro:
+   acá se leen bien sobre el fondo negro */
+#vistaActividades .descripcion,
+#vistaActividades .titulo-panel p,
+#vistaActividades .cantidad {
+    color: var(--texto-suave);
+}
+
+#vistaActividades .campo label,
+.asig-subtitulo {
+    color: var(--texto);
+}
+
+
+/* ---------- Formulario ---------- */
+
+#vistaActividades .formulario {
+    grid-template-columns: 1fr 1.6fr 1fr 1fr;
+}
+
+.campo select {
+    width: 100%;
+    padding: 13px 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--blanco);
+    outline: none;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.campo select:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 2px rgba(115, 255, 56, .08);
+}
+
+.campo select option {
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+
+/* ---------- Tablas (anulan las columnas fijas de la tabla de socios) ---------- */
+
+.tabla-actividades table {
+    table-layout: auto;
+    min-width: 720px;
+}
+
+.tabla-actividades table th,
+.tabla-actividades table td {
+    width: auto;
+    text-align: left;
+}
+
+.tabla-actividades table th:last-child,
+.tabla-actividades table td:last-child {
+    width: 150px;
+    text-align: center;
+}
+
+.act-nombre {
+    font-weight: 700;
+    color: var(--blanco);
+}
+
+.act-desc {
+    color: var(--texto-suave);
+}
+
+.act-muted {
+    color: var(--texto-tenue);
+    font-size: 12px;
+}
+
+.tabla-actividades .acciones-tabla {
+    flex-wrap: nowrap;
+}
+
+
+/* ---------- Etiquetas de actividad ---------- */
+
+.chip-actividad {
+    display: inline-block;
+    margin: 2px 6px 2px 0;
+    padding: 4px 10px;
+    border: 1px solid rgba(115, 255, 56, .5);
+    border-radius: var(--radio-sm);
+    background: rgba(115, 255, 56, .1);
+    color: var(--verde);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ---------- Asignar actividades a un socio ---------- */
+
+.asignacion {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.asig-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+.asig-subtitulo {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.act-resultados {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.act-resultados:empty {
+    display: none;
+}
+
+.act-resultados button {
+    width: 100%;
+    padding: 12px 14px;
+    text-align: left;
+    background: var(--superficie-2);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.act-resultados button:hover {
+    border-color: var(--verde);
+}
+
+.act-sin-resultados {
+    padding: 4px 2px;
+    color: var(--texto-tenue);
+    font-size: 12px;
+}
+
+.act-socio-elegido {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--verde-borde);
+    border-radius: var(--radio-sm);
+    background: var(--verde-fondo);
+    color: var(--verde);
+    font-size: 13px;
+}
+
+.act-socio-elegido i {
+    font-size: 18px;
+}
+
+.act-socio-elegido small {
+    display: block;
+    margin-top: 2px;
+    color: var(--texto-tenue);
+    font-size: 11px;
+}
+
+.act-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.act-vacio {
+    padding: 14px;
+    border: 1px dashed var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--texto-tenue);
+    font-size: 13px;
+}
+
+.act-check {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    background: var(--superficie);
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+.act-check:hover {
+    border-color: var(--borde);
+}
+
+.act-check:has(input:checked) {
+    border-color: var(--verde);
+    background: var(--superficie-2);
+}
+
+.act-check input {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--verde);
+}
+
+.act-check small {
+    margin-left: auto;
+    color: var(--texto-tenue);
+    font-size: 11px;
+    text-align: right;
+}
+
+.act-check.deshabilitada {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+#btnGuardarAsignacion:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ---------- Filtro de inscripciones ---------- */
+
+.act-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.act-filtros .campo {
+    min-width: min(280px, 100%);
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1000px) {
+    #vistaActividades .formulario {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .asignacion {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 750px) {
+    #vistaActividades .formulario {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    /* En celular el buscador pasa a columna y su campo se aplastaba */
+    #vistaActividades .input-busqueda input {
+        flex: none;
+        width: 100%;
+    }
+}
+
+
+
+
+#vistaSocios table {
+    min-width: 880px;
+}
+
+#vistaSocios table th,
+#vistaSocios table td {
+    text-align: left;
+}
+
+#vistaSocios table th:nth-child(1),
+#vistaSocios table td:nth-child(1) { width: 14%; }
+
+#vistaSocios table th:nth-child(2),
+#vistaSocios table td:nth-child(2) { width: 14%; }
+
+#vistaSocios table th:nth-child(3),
+#vistaSocios table td:nth-child(3) { width: 12%; }
+
+#vistaSocios table th:nth-child(4),
+#vistaSocios table td:nth-child(4) { width: 13%; }
+
+#vistaSocios table th:nth-child(5),
+#vistaSocios table td:nth-child(5) { width: 21%; }
+
+#vistaSocios table th:nth-child(6),
+#vistaSocios table td:nth-child(6) {
+    width: 12%;
+    text-align: center;
+}
+
+#vistaSocios table th:nth-child(7),
+#vistaSocios table td:nth-child(7) {
+    width: 14%;
+    text-align: center;
+}
+/* ====== Footer  Italy Fitness Gym */
+.site-footer {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    color: #de0bb0;
+    background: #000000;
+    border-top: 1px solid #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.68rem;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.site-footer__logo {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    object-fit: contain;
+}
+.site-footer__text {
+    margin: 0;
+}
+
+@media (max-width: 420px) {
+    .site-footer {
+        gap: 0.3rem;
+        padding-inline: 0.4rem;
+        font-size: 0.6rem;
+    }
+
+    .site-footer__logo {
+        width: 16px;
+        height: 16px;
+        flex-basis: 16px;
+    }
+}

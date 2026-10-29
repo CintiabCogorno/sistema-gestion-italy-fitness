@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Gestión de Socios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/tema.css">
+    <link rel="stylesheet" href="../styles/estilos.css">
+    <link rel="stylesheet" href="../styles/actividades.css">
+    <link rel="stylesheet" href="../styles/ficha-socio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<aside class="sidebar">
+    <div class="logo">
+        <img src="../img/logo-Italy-Fitness-transparente.png" alt="Logo Italy Fitness" class="logo-gym">
+    </div>
+
+    <p class="subtitulo">SISTEMA DE GESTIÓN</p>
+    <nav>
+        <a href="../index.html"><i class="fa-solid fa-gauge"></i> Inicio</a>
+        <a href="./socios.html" id="navSocios" class="activo"><i class="fa-solid fa-users"></i> Socios</a>
+        <a href="./pagos.html" id="navPagos"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+        <a href="./actividades.html" id="navActividades"><i class="fa-solid fa-dumbbell"></i> Actividades</a>
+        <a href="./acceso.html" id="navAccesos"><i class="fa-solid fa-door-open"></i> Acceso</a>
+        <a href="./productos.html" id="navProductos"><i class="fa-solid fa-box"></i> Productos</a>
+        <a href="./ventas.html" id="navVentas"><i class="fa-solid fa-cash-register"></i> Ventas</a>
+    </nav>
+</aside>
+<main class="contenido">
+    <div id="vistaSocios">
+
+        <!-- ENCABEZADO DE SOCIOS -->
+        <header class="encabezado">
+            <div>
+                <p class="seccion">SOCIOS</p>
+                <h1>GESTION DE SOCIOS</h1>
+                <p class="descripcion">
+                    Registrar y administrar los socios del gimnasio
+                </p>
+            </div>
+
+            <div class="usuario">
+                <i class="fa-solid fa-user"></i>
+                <span>Recepcionista</span>
+            </div>
+        </header>
+
+        <!-- FORMULARIO DE SOCIOS -->
+        <section class="panel">
+            <div class="titulo-panel">
+                <div class="icono-titulo"> </div>
+
+                <div>
+                    <h2>REGISTRAR SOCIO</h2>
+                    <p>Ingrese los datos del nuevo socio</p>
+                </div>
+            </div>
+
+            <form id="formSocio">
+                <div class="formulario">
+                    <div class="campo">
+                        <label for="nombre">Nombre</label>
+                        <input
+                                type="text"
+                                id="nombre"
+                                placeholder="Ingrese el nombre"
+                                required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="apellido">Apellido</label>
+                        <input
+                                type="text"
+                                id="apellido"
+                                placeholder="Ingrese el apellido"
+                                required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="dni">DNI</label>
+                        <input
+                                type="number"
+                                id="dni"
+                                placeholder="Ingrese el DNI"
+                                required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefono">Teléfono</label>
+                        <input
+                                type="tel"
+                                id="telefono"
+                                placeholder="Ingrese el teléfono"
+                                required>
+                    </div>
+                </div>
+
+                <div class="acciones-formulario">
+                    <button type="submit" class="btn-guardar">
+                        Guardar socio
+                    </button>
+
+                    <button
+                            type="button"
+                            class="btn-cancelar"
+                            id="btnCancelar"
+                            hidden>
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- GESTIONAR SOCIO: pago y actividades -->
+        <section class="panel" id="fichaSocio">
+            <div class="titulo-panel">
+                <div class="icono-titulo"> </div>
+
+                <div>
+                    <h2>PAGOS Y ACTIVIDADES DEL SOCIO</h2>
+                    <p>Elegí un socio para registrar su pago o asignarle actividades.</p>
+                </div>
+            </div>
+
+            <!-- ELEGIR SOCIO -->
+            <div id="fsElegir" class="fs-elegir">
+                <div class="campo">
+                    <label for="fsBuscar">Buscar socio</label>
+                    <input type="text" id="fsBuscar" autocomplete="off"
+                           placeholder="Buscar por DNI, nombre o apellido">
+                </div>
+                <div id="fsResultados" class="fs-resultados"></div>
+                <p class="fs-ayuda">También podés tocar <strong>Gestionar</strong> en la tabla de socios. Al guardar un socio nuevo, queda elegido automáticamente.</p>
+            </div>
+
+            <!-- SOCIO ELEGIDO -->
+            <div id="fsCuerpo" hidden>
+                <div class="fs-cabecera">
+                    <div>
+                        <h3 id="fsNombre">Socio</h3>
+                        <p id="fsDni"></p>
+                    </div>
+
+                    <button type="button" class="btn-cancelar" id="fsCerrar">Cambiar socio</button>
+                </div>
+
+                <div class="fs-mensaje" id="fsMensaje" hidden></div>
+
+                <div class="fs-tabs" role="tablist">
+                    <button type="button" class="fs-tab activa" data-tab="pago" role="tab" aria-selected="true">
+                        Registrar pago
+                    </button>
+                    <button type="button" class="fs-tab" data-tab="actividades" role="tab" aria-selected="false">
+                        Asignar actividades
+                    </button>
+                </div>
+
+                <!-- PAGO -->
+                <div id="fsPanelPago" class="fs-grid">
+                    <form id="fsFormPago" class="fs-form">
+                        <div class="campo">
+                            <label for="fsFecha">Fecha de pago</label>
+                            <input type="date" id="fsFecha" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="fsImporte">Importe ($)</label>
+                            <input type="number" id="fsImporte" min="0.01" step="0.01" placeholder="Ej. 25000" required>
+                        </div>
+
+                        <div class="campo fs-ancho">
+                            <label for="fsMedio">Medio de pago</label>
+                            <select id="fsMedio" required>
+                                <option value="">Seleccionar medio</option>
+                                <option value="EFECTIVO">Efectivo</option>
+                                <option value="TRANSFERENCIA">Transferencia</option>
+                                <option value="DEBITO">Tarjeta de débito</option>
+                                <option value="CREDITO">Tarjeta de crédito</option>
+                                <option value="OTRO">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="acciones-formulario">
+                            <button type="submit" class="btn-guardar" id="fsBtnPago">Registrar pago</button>
+                        </div>
+                    </form>
+
+                    <div>
+                        <span class="fs-subtitulo">Últimos pagos</span>
+                        <p id="fsUltimoPago"></p>
+                        <ul id="fsPagos"></ul>
+                    </div>
+                </div>
+
+                <!-- ACTIVIDADES -->
+                <div id="fsPanelActividades" hidden>
+                    <span class="fs-subtitulo">Marcá las actividades que realiza el socio</span>
+                    <div id="fsActividades"></div>
+
+                    <div class="acciones-formulario">
+                        <button type="button" class="btn-guardar" id="fsBtnActividades">Guardar actividades</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TABLA DE SOCIOS -->
+        <section class="panel">
+            <div class="titulo-tabla">
+                <div>
+                    <p class="seccion">REGISTROS</p>
+                    <h2>Socios registrados</h2>
+                </div>
+
+                <div class="cantidad">
+                    <span id="cantidadSocios">0</span>
+                    socios
+                </div>
+            </div>
+
+            <!-- BUSCAR SOCIO POR DNI -->
+            <div class="busqueda-dni">
+                <div class="campo-busqueda">
+                    <label for="buscarDni">Buscar socio por DNI</label>
+
+                    <div class="input-busqueda">
+                        <input
+                                type="text"
+                                id="buscarDni"
+                                placeholder="Ingrese el DNI del socio">
+
+                        <button
+                                type="button"
+                                id="btnBuscarDni"
+                                title="Buscar socio">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+                <button
+                        type="button"
+                        id="btnMostrarTodos"
+                        class="btn-mostrar-todos">
+                    Mostrar todos
+                </button>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>DNI</th>
+                        <th>Teléfono</th>
+                        <th>Actividades</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tablaSocios">
+                    <!-- Los socios se agregan mediante JavaScript -->
+                    </tbody>
+                </table>
+
+                <div class="tabla-vacia" id="tablaVacia">
+                    <i class="fa-solid fa-users"></i>
+                    <p>No hay socios registrados.</p>
+                    <span>
+                            Utilice el formulario para agregar un nuevo socio.
+                        </span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- FIN DE VISTA DE SOCIOS -->
+</main>
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
+
+<script src="../js/socios.js"></script>
+<script src="../js/ficha-socio.js"></script>
+</body>
+</html>

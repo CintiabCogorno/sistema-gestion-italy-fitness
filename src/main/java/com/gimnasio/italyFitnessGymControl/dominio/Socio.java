@@ -1,9 +1,12 @@
 package com.gimnasio.italyFitnessGymControl.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "socio")
@@ -23,6 +26,21 @@ public class Socio extends Persona {
 
     @OneToMany(mappedBy = "socio")
     private List<Acceso> accesos = new ArrayList<>();
+
+    // Compras del socio (se ocultan en el JSON para no devolver todo el historial en /socios)
+    @OneToMany(mappedBy = "socio")
+    @JsonIgnore
+    private List<Venta> ventas = new ArrayList<>();
+
+    // Actividades que realiza el socio (musculación, yoga, etc.). Se guarda en la tabla "socio_actividad".
+    @ManyToMany
+    @JoinTable(
+            name = "socio_actividad",
+            joinColumns = @JoinColumn(name = "id_socio"),
+            inverseJoinColumns = @JoinColumn(name = "id_actividad")
+    )
+    @JsonIgnore
+    private Set<Actividad> actividades = new HashSet<>();
 
 
     public Socio() {
@@ -44,6 +62,14 @@ public class Socio extends Persona {
         this.pagos = pagos;
     }
 
+    public List<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(List<Venta> ventas) {
+        this.ventas = ventas;
+    }
+
     public List<Acceso> getAccesos() {
         return accesos;
     }
@@ -52,9 +78,12 @@ public class Socio extends Persona {
         this.accesos = accesos;
     }
 
-    public boolean puedeIngresar() {
-        // Lógica pendiente: dependerá de la relación con Pago (última cuota vigente)
-        return false;
+    public Set<Actividad> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(Set<Actividad> actividades) {
+        this.actividades = actividades;
     }
 
     public LocalDate getFechaAlta() {

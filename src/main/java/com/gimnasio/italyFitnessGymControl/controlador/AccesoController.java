@@ -2,6 +2,7 @@ package com.gimnasio.italyFitnessGymControl.controlador;
 
 import com.gimnasio.italyFitnessGymControl.dominio.Acceso;
 import com.gimnasio.italyFitnessGymControl.servicio.IAccesoService;
+import com.gimnasio.italyFitnessGymControl.servicio.IPagoService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,11 @@ import java.util.List;
 public class AccesoController {
 
     private final IAccesoService accesoServ;
+    private final IPagoService pagoServ;
 
-    public AccesoController(IAccesoService accesoServ) {
+    public AccesoController(IAccesoService accesoServ, IPagoService pagoServ) {
         this.accesoServ = accesoServ;
+        this.pagoServ = pagoServ;
     }
 
     @GetMapping
@@ -43,17 +46,23 @@ public class AccesoController {
 
         if (acceso == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se encuentra el registro de acceso");
+                    .body("No se encuentra el registro");
         }
 
         return ResponseEntity.ok(acceso);
     }
 
+
     @PostMapping
-    public ResponseEntity<?> registrarAcceso(@RequestBody Acceso acceso) {
-        Acceso creado = accesoServ.registrarAcceso(acceso);
+    public ResponseEntity<?> registrarAcceso(
+            @RequestParam Long idSocio,
+            @RequestBody Acceso acceso) {
+
+        Acceso creado = accesoServ.registrarAcceso(acceso, idSocio);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminarAcceso(@PathVariable Long id) {
@@ -61,7 +70,7 @@ public class AccesoController {
 
         if (!eliminado) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("No se encuentra el registro de acceso");
+                    .body("No se encuentra el registro");
         }
 
         return ResponseEntity.ok("Registro de acceso eliminado correctamente");

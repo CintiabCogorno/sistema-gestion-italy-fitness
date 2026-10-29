@@ -1,8 +1,12 @@
 package com.gimnasio.italyFitnessGymControl.servicio;
 
 import com.gimnasio.italyFitnessGymControl.dominio.Pago;
+import com.gimnasio.italyFitnessGymControl.dominio.Socio;
 import com.gimnasio.italyFitnessGymControl.repositorio.IPagoRepository;
 import org.springframework.stereotype.Service;
+import com.gimnasio.italyFitnessGymControl.repositorio.ISocioRepository;
+import com.gimnasio.italyFitnessGymControl.dto.PagoDTO;
+import java.util.stream.Collectors;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,9 +15,14 @@ import java.util.List;
 public class PagoService implements IPagoService {
 
     private final IPagoRepository pagoRepository;
+    private final ISocioRepository socioRepository;
 
-    public PagoService(IPagoRepository pagoRepository) {
+    public PagoService(
+            IPagoRepository pagoRepository,
+            ISocioRepository socioRepository) {
+
         this.pagoRepository = pagoRepository;
+        this.socioRepository = socioRepository;
     }
 
     @Override
@@ -21,6 +30,18 @@ public class PagoService implements IPagoService {
         pago.setAnulado(false);
         return pagoRepository.save(pago);
     }
+
+    @Override
+    public Pago registrarPago(Pago pago, Long idSocio) {
+        Socio socio = socioRepository.findById(idSocio)
+                .orElseThrow(() ->
+                        new RuntimeException("No se encuentra el socio"));
+
+                pago.setSocio(socio);
+                pago.setAnulado(false);
+
+                return pagoRepository.save(pago);
+        }
 
     @Override
     public List<Pago> traerPagos() {
@@ -53,7 +74,6 @@ public class PagoService implements IPagoService {
         existente.setFechaPago(datosActualizados.getFechaPago());
         existente.setValorCuota(datosActualizados.getValorCuota());
         existente.setMedioPago(datosActualizados.getMedioPago());
-        // "anulado" no se toca acá a propósito: eso se maneja con anularPago()
 
         return pagoRepository.save(existente);
     }
@@ -72,7 +92,46 @@ public class PagoService implements IPagoService {
 
     @Override
     public boolean tieneCuotaVigente(Long idSocio) {
-        return false;
+        List<Pago> pagos = pagoRepository
+                .findBySocio_IdAndAnuladoFalseOrderByFechaPagoDesc(idSocio);
+        if (pagos.isEmpty()){
+            return false;
+        }
+        return !pagos.get(0).estaVencido();
+    }
+
+    private PagoDTO convertirADTO(Pago pago) {
+        PagoDTO dto = new PagoDTO();
+
+        dto.setIdPago(pago.getIdPago());
+        dto.setFechaPago(pago.getFechaPago());
+        dto.setValorCuota(pago.getValorCuota());
+        dto.setMedioPago(pago.getMedioPago());
+        dto.setAnulado(pago.isAnulado());
+
+        if (pago.getSocio() != null) {
+            dto.setIdSocio(pago.getSocio().getId());
+            dto.setNombreSocio(
+                    pago.getSocio().getNombre() + " " +
+                            pago.getSocio().getApellido()
+            );
+        }
+
+        return dto;
+    }
+
+    public List<PagoDTO> traerPagosDTO() {
+        return pagoRepository.findAll()
+                .stream()
+                .map(this::convertirADTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<PagoDTO> traerPagosVigentesDTO() {
+        return pagoRepository.findByAnuladoFalse()
+                .stream()
+                .map(this::convertirADTO)
+                .collect(Collectors.toList());
     }
 }
 

@@ -20,7 +20,14 @@ public class DetalleVenta {
     @Column(nullable = false)
     private BigDecimal subtotal;
 
-    // TODO: cuando agreguemos las relaciones, acá van las referencias a Venta y Producto
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "venta_id", nullable = false)
+    private Venta venta;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Producto producto;
+
 
     public DetalleVenta() {
     }
@@ -31,8 +38,34 @@ public class DetalleVenta {
         calcularSubtotal();
     }
 
+
     public void calcularSubtotal() {
-        this.subtotal = precioUnitario.multiply(BigDecimal.valueOf(cantidad));
+        if (cantidad <= 0) {
+            throw new IllegalArgumentException(
+                    "La cantidad debe ser mayor que cero."
+            );
+        }
+
+        if (precioUnitario == null ||
+                precioUnitario.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException(
+                    "El precio unitario no puede ser nulo ni negativo."
+            );
+        }
+
+        this.subtotal = precioUnitario.multiply(
+                BigDecimal.valueOf(cantidad)
+        );
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+        calcularSubtotal();
+    }
+
+    public void setPrecioUnitario(BigDecimal precioUnitario) {
+        this.precioUnitario = precioUnitario;
+        calcularSubtotal();
     }
 
     public Long getIdDetalle() {
@@ -47,21 +80,27 @@ public class DetalleVenta {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-        calcularSubtotal();
-    }
-
     public BigDecimal getPrecioUnitario() {
         return precioUnitario;
     }
 
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
-        calcularSubtotal();
-    }
-
     public BigDecimal getSubtotal() {
         return subtotal;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 }

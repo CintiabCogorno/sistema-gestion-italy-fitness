@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.gimnasio.italyFitnessGymControl.dto.PagoDTO;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,13 +21,13 @@ public class PagoController {
     }
 
     @GetMapping
-    public List<Pago> traerPagos() {
-        return pagoServ.traerPagos();
+    public List<PagoDTO> traerPagos() {
+        return pagoServ.traerPagosDTO();
     }
 
     @GetMapping("/vigentes")
-    public List<Pago> traerVigentes() {
-        return pagoServ.traerPagosVigentes();
+    public List<PagoDTO> traerVigentes() {
+        return pagoServ.traerPagosVigentesDTO();
     }
 
     @GetMapping("/rango")
@@ -50,8 +50,12 @@ public class PagoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registrarPago(@RequestBody Pago pago) {
-        Pago creado = pagoServ.registrarPago(pago);
+    public ResponseEntity<?> registrarPago(
+            @RequestParam Long idSocio,
+            @RequestBody Pago pago) {
+
+        Pago creado = pagoServ.registrarPago(pago, idSocio);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
 

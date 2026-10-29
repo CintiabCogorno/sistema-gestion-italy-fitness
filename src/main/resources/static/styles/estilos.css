@@ -1,0 +1,1510 @@
+
+/* =========================================================
+   SISTEMA DE GESTION ITALY FITNESS - ESTILOS
+========================================================= */
+:root {
+    /* Los colores viven en tema.css */
+
+    /* Bordes redondeados unificados */
+    --radio-sm: 8px;   /* inputs, botones, tablas, badges */
+    --radio-lg: 14px;  /* paneles, tarjetas, modales */
+}
+
+/* =========================================================
+   TIPOGRAFÍAS: ANTON + MONTSERRAT
+========================================================= */
+body,
+button,
+input,
+label,
+p,
+span,
+a,
+td,
+th {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1,
+h2,
+.titulo-panel h2,
+.titulo-tabla h2 {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+/* =========================================================
+   RESET GENERAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--fondo);
+    color: var(--blanco);
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   ESTRUCTURA PRINCIPAL
+========================================================= */
+
+.sistema {
+
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    width: 245px;
+    background: var(--superficie);
+    border-right: 1px solid var(--borde);
+    padding: 30px 20px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    overflow-x: hidden;   /* nada se sale de la barra */
+    overflow-y: auto;     /* si no entra el menú, se desplaza dentro de la barra */
+}
+
+
+/* LOGO */
+
+.logo {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.logo-gym {
+    width: 100%;
+    max-width: 205px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+
+.subtitulo {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--blanco);
+    margin-bottom: 10px;
+}
+
+/* =========================================================
+   MENU
+========================================================= */
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--blanco);
+    text-decoration: none;
+    padding: 14px 15px;
+    border-left: 3px solid transparent;
+    border-radius: var(--radio-sm);
+    transition: 0.2s ease;
+}
+
+nav a i {
+    width: 20px;
+    text-align: center;
+}
+
+nav a:hover {
+    color: var(--blanco);
+    background: var(--gris-oscuro);
+}
+
+nav a.activo {
+    color: var(--verde);
+    background: var(--gris-oscuro);
+    border-left-color: var(--verde);
+}
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.contenido {
+    margin-left: 245px;
+    width: calc(100% - 245px);
+    padding: 35px 45px;
+    min-width: 0;
+}
+
+/* =========================================================
+   ENCABEZADO
+========================================================= */
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.seccion {
+
+    color: var(--verde);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+
+h1 {
+    font-size: 34px;
+    font-weight: 400;
+}
+
+.descripcion {
+    color: var(--gris);
+    margin-top: 8px;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    background: var(--superficie);
+}
+
+.usuario i {
+    color: var(--verde);
+}
+
+/* =========================================================
+   PANELES
+========================================================= */
+
+.panel {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    padding: 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+
+/* =========================================================
+   TITULO DEL PANEL
+========================================================= */
+.titulo-panel {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.icono-titulo {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--radio-sm);
+
+    background: var(--verde);
+    color: var(--negro);
+    font-size: 19px;
+    flex-shrink: 0;
+}
+
+h2 {
+    font-size: 21px;
+}
+
+.titulo-panel p {
+    color: var(--gris);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* =========================================================
+   FORMULARIO
+========================================================= */
+
+.formulario {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--gris);
+}
+
+.campo input {
+    width: 100%;
+    padding: 13px 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--blanco);
+    outline: none;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.campo input::placeholder {
+    color: var(--texto-tenue);
+}
+
+.campo input:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 2px rgba(115, 255, 56, .08);
+}
+
+/* =========================================================
+   BOTONES GENERALES
+========================================================= */
+
+button {
+    border: none;
+    border-radius: var(--radio-sm);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 13px;
+    transition: .2s ease;
+}
+
+/* =========================================================
+   BOTONES DEL FORMULARIO
+========================================================= */
+
+.acciones-formulario {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-guardar {
+    background: var(--verde);
+    color: var(--negro);
+    padding: 13px 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radio-sm);
+    gap: 8px;
+}
+
+.btn-guardar:hover {
+    background: var(--verde-hover);
+    transform: translateY(-1px);
+}
+
+
+.btn-cancelar {
+    background: transparent;
+    color: var(--gris);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    padding: 13px 22px;
+}
+
+.btn-cancelar:hover {
+    color: var(--blanco);
+    border-color: var(--blanco);
+}
+
+/* =========================================================
+   TABLA - ENCABEZADO
+========================================================= */
+
+.titulo-tabla {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.cantidad {
+    color: var(--gris);
+    font-size: 13px;
+}
+
+.cantidad span {
+    color: var(--verde);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* =========================================================
+   BUSCADOR POR DNI
+========================================================= */
+
+.busqueda-dni {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 18px 20px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-left: 3px solid var(--verde);
+    border-radius: var(--radio-sm);
+}
+
+/* CONTENEDOR DEL CAMPO */
+.campo-busqueda {
+    flex: 1;
+    min-width: 0;
+}
+
+.campo-busqueda label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--blanco);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.input-busqueda {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.input-busqueda input {
+    flex: 1;
+    min-width: 0;
+    height: 42px;
+    padding: 0 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--blanco);
+    font-size: 14px;
+    outline: none;
+    transition: .2s ease;
+}
+
+.input-busqueda input::placeholder {
+    color: var(--texto-tenue);
+}
+.input-busqueda input:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 2px rgba(115, 255, 56, .08);
+}
+
+/* ==========================
+   BOTON BUSCAR
+============================= */
+
+#btnBuscarDni,#btnBuscarProducto {
+    height: 42px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--verde);
+    color: var(--negro);
+    border: 1px solid var(--verde);
+    border-radius: var(--radio-sm);
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+#btnBuscarDni:hover,#btnBuscarProducto:hover {
+    background: var(--verde-hover);
+    border-color: var(--verde-hover);
+    transform: translateY(-1px);
+}
+
+#btnBuscarDni:active,#btnBuscarProducto:active {
+    transform: translateY(0);
+}
+
+#btnBuscarDni i,#btnBuscarProducto i {
+    font-size: 14px;
+}
+
+/* =========================================================
+   BOTON MOSTRAR TODOS
+========================================================= */
+
+.btn-mostrar-todos {
+    height: 42px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--blanco);
+    border: 1px solid var(--verde);
+    border-radius: var(--radio-sm);
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+
+.btn-mostrar-todos:hover {
+
+    background: var(--verde);
+    color: var(--negro);
+    transform: translateY(-1px);
+}
+
+
+.btn-mostrar-todos i {
+    color: var(--verde);
+    transition: .2s ease;
+}
+
+
+.btn-mostrar-todos:hover i {
+    color: var(--negro);
+}
+
+
+/* =========================================================
+   TABLA
+========================================================= */
+
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+
+thead {
+
+    background: var(--superficie);
+}
+
+
+th {
+    color: var(--verde);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+    padding: 15px;
+    border-bottom: 1px solid var(--borde);
+}
+
+
+td {
+    padding: 16px 15px;
+    color: var(--texto);
+    font-size: 14px;
+    border-bottom: 1px solid var(--borde);
+    vertical-align: middle;
+}
+
+
+tbody tr {
+    transition: background .2s ease;
+}
+
+
+tbody tr:hover {
+    background: var(--superficie);
+}
+
+
+/* =========================================================
+   LAYOUT DE COLUMNAS
+========================================================= */
+
+/* Nombre */
+
+th:nth-child(1),
+td:nth-child(1) {
+
+    width: 20%;
+}
+
+
+/* Apellido */
+
+th:nth-child(2),
+td:nth-child(2) {
+
+    width: 20%;
+}
+
+
+/* DNI */
+
+th:nth-child(3),
+td:nth-child(3) {
+
+    width: 15%;
+}
+
+
+/* Teléfono */
+
+th:nth-child(4),
+td:nth-child(4) {
+
+    width: 18%;
+}
+
+/* Acciones */
+
+th:nth-child(5),
+td:nth-child(5) {
+    width: 18%;
+    text-align: center;
+}
+
+
+/* =========================================================
+   ACCIONES DE LA TABLA
+========================================================= */
+
+
+.acciones-tabla {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    white-space: nowrap;
+}
+.badge-estado {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: var(--radio-sm);
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.estado-activo {
+    color: var(--verde);
+
+}
+
+.estado-inactivo {
+    color: var(--rojo-texto);
+
+}
+
+.estado-desconocido {
+    color: var(--texto-suave);
+
+}
+
+
+/* =========================================================
+   BOTON EDITAR
+========================================================= */
+
+.btn-editar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: rgba(115, 255, 56, .10);
+    color: var(--verde);
+    border: 1px solid var(--verde);
+    border-radius: var(--radio-sm);
+    flex-shrink: 0;
+}
+
+.btn-editar:hover {
+    background: var(--verde);
+    color: var(--negro);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   BOTON ELIMINAR
+========================================================= */
+
+.btn-eliminar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: rgba(255, 0, 0, .08);
+    color: var(--rojo-suave);
+    border: 1px solid var(--rojo-borde);
+    border-radius: var(--radio-sm);
+    flex-shrink: 0;
+}
+
+.btn-eliminar:hover {
+    background: var(--rojo);
+    color: var(--negro);
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   TABLA VACIA
+========================================================= */
+
+.tabla-vacia {
+    text-align: center;
+    padding: 45px;
+    color: var(--gris);
+}
+
+.tabla-vacia i {
+    font-size: 35px;
+    color: var(--verde);
+    margin-bottom: 15px;
+}
+
+.tabla-vacia p {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.tabla-vacia span {
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .formulario {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .busqueda-dni {
+        flex-wrap: wrap;
+    }
+
+    .campo-busqueda {
+        flex: 1 1 100%;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET PEQUEÑA
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .sidebar {
+        width: 70px;
+        padding: 25px 10px;
+    }
+
+    .logo,
+    .subtitulo {
+        display: none;
+    }
+
+    nav a {
+        justify-content: center;
+        gap: 0;
+        padding: 14px 8px;
+        font-size: 0;
+    }
+
+    nav a i {
+        width: auto;
+        font-size: 20px;
+    }
+
+    .contenido {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+        padding: 25px;
+    }
+
+    .formulario {
+        grid-template-columns: 1fr;
+    }
+    /* Buscador */
+
+    .busqueda-dni {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 18px;
+    }
+
+    .campo-busqueda {
+        width: 100%;
+    }
+
+    .input-busqueda {
+        width: 100%;
+    }
+
+    #btnBuscarDni,    #btnBuscarProducto {
+        padding: 0 18px;
+    }
+
+    .btn-mostrar-todos {
+        width: 100%;
+    }
+
+    /* Encabezado */
+
+    .encabezado {
+
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .usuario {
+
+        align-self: stretch;
+        justify-content: center;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - CELULAR
+========================================================= */
+
+@media (max-width: 520px) {
+
+    .contenido {
+        padding: 18px;
+    }
+
+    .panel {
+
+        padding: 18px;
+    }
+
+    h1 {
+
+        font-size: 28px;
+    }
+
+
+    h2 {
+
+        font-size: 19px;
+    }
+
+    .titulo-tabla {
+
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .busqueda-dni {
+
+        padding: 15px;
+    }
+
+    .input-busqueda {
+
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #btnBuscarDni,    #btnBuscarProducto {
+
+        width: 100%;
+    }
+
+    .tabla-contenedor {
+
+        overflow-x: auto;
+    }
+
+    table {
+
+        min-width: 650px;
+    }
+}
+
+/* =========================================================
+   AJUSTES VISUALES: FONDO NEGRO Y TIPOGRAFÍAS
+========================================================= */
+#vistaSocios .panel {
+    background: var(--superficie);
+}
+
+#vistaSocios .titulo-panel h2,
+#vistaSocios .titulo-tabla h2 {
+    color: var(--blanco);
+}
+
+#vistaSocios .campo label {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/* =====================================
+   ITALY FITNESS - VISTA DE PAGOS
+===================================== */
+
+.vistaPagos {
+    width: 100%;
+    min-width: 0;
+    color: var(--texto);
+    font-family: "Montserrat", sans-serif;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.vistaPagos[hidden] {
+    display: none !important;
+}
+
+.vistaPagos *,
+.vistaPagos *::before,
+.vistaPagos *::after {
+    box-sizing: border-box;
+}
+
+.vistaPagos .top {
+    margin-bottom: 24px;
+}
+
+.vistaPagos .eyebrow {
+    color: var(--verde);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+
+.vistaPagos h1,
+.vistaPagos h2 {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.vistaPagos h1 {
+    margin: 0 0 10px;
+    font-size: clamp(25px, 3vw, 34px);
+}
+
+.vistaPagos h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+
+.vistaPagos .sub {
+    color: var(--texto-suave);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.vistaPagos .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.vistaPagos .metric {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    padding: 20px;
+    min-width: 0;
+}
+
+.vistaPagos .metric label {
+    display: block;
+    color: var(--texto-suave);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .7px;
+    margin-bottom: 12px;
+}
+
+.vistaPagos .metric strong {
+    display: block;
+    color: var(--verde);
+    font-size: 28px;
+    overflow-wrap: anywhere;
+    margin-bottom: 8px;
+}
+
+.vistaPagos .metric small {
+    color: var(--texto-tenue);
+    font-size: 11px;
+}
+
+.vistaPagos .columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.vistaPagos .card {
+
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    padding: 22px;
+}
+
+.vistaPagos .cardhead {
+    margin-bottom: 22px;
+}
+
+/* Formulario de pago: en pantallas anchas los campos van en una fila */
+.vistaPagos .form {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    align-items: start;
+}
+
+/* fecha e importe pasan a ser columnas directas de la grilla */
+.vistaPagos .twocol {
+    display: contents;
+}
+
+.vistaPagos .form .actions {
+    grid-column: 1 / -1;
+}
+
+.vistaPagos .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.vistaPagos .field > label {
+    color: var(--texto);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .7px;
+}
+
+.vistaPagos input,
+.vistaPagos select {
+    width: 100%;
+    min-width: 0;
+    min-height: 43px;
+    padding: 11px 12px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+}
+
+.vistaPagos input:focus,
+.vistaPagos select:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 2px rgb(115 255 56 / 12%);
+}
+
+.vistaPagos input::placeholder {
+    color: var(--texto-tenue);
+}
+
+.vistaPagos input[type="date"] {
+    color-scheme: dark;
+}
+
+.vistaPagos .hint {
+    color: var(--texto-tenue);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.vistaPagos .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.vistaPagos .btn {
+    min-height: 40px;
+    padding: 11px 15px;
+    border: 1px solid transparent;
+    border-radius: var(--radio-sm);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.vistaPagos .btn.primary {
+    background: var(--verde);
+    color: var(--negro);
+}
+
+.vistaPagos .btn.primary:hover {
+    background: var(--verde-hover);
+    transform: translateY(-1px);
+}
+
+.vistaPagos .btn.secondary {
+    background: var(--superficie-2);
+    color: var(--texto);
+    border-color: var(--borde);
+}
+
+.vistaPagos .btn.secondary:hover {
+    border-color: var(--verde);
+}
+
+.vistaPagos .btn.danger {
+    background: var(--rojo);
+    color: var(--negro);
+}
+
+.vistaPagos .notice {
+    display: none;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: var(--radio-sm);
+    font-size: 13px;
+}
+
+.vistaPagos .notice:not(:empty) {
+    display: block;
+    background: var(--verde-fondo);
+    border: 1px solid var(--verde-borde);
+    color: var(--verde);
+}
+
+.vistaPagos .results {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.vistaPagos .results:empty,
+.vistaPagos .selected:empty {
+    display: none;
+}
+
+.vistaPagos .results button {
+    width: 100%;
+    padding: 12px;
+    text-align: left;
+    background: var(--superficie-2);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    cursor: pointer;
+}
+
+.vistaPagos .results button:hover {
+    border-color: var(--verde);
+}
+
+.vistaPagos .selected {
+    padding: 10px 12px;
+    border: 1px solid var(--verde);
+    border-radius: var(--radio-sm);
+    color: var(--verde);
+    background: var(--verde-fondo);
+    font-size: 12px;
+}
+
+.vistaPagos .filters {
+    display: grid;
+    grid-template-columns: minmax(160px, 2fr) repeat(2, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.vistaPagos .filters .search {
+    grid-column: 1 / -1;
+}
+
+.vistaPagos .tablewrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+}
+
+.vistaPagos table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    table-layout: auto;   /* anula el layout fijo de la tabla de socios */
+    font-size: 12px;
+}
+
+.vistaPagos th {
+    width: auto;
+    padding: 13px 12px;
+    background: var(--superficie-2);
+    color: var(--texto-suave);
+    font-size: 10px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    white-space: nowrap;
+}
+
+.vistaPagos td {
+    width: auto;
+    padding: 13px 12px;
+    border-top: 1px solid var(--borde);
+    color: var(--texto);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.vistaPagos tbody tr:hover {
+    background: var(--verde-fondo);
+}
+
+.vistaPagos .empty {
+    padding: 28px;
+    text-align: center;
+    color: var(--texto-tenue);
+}
+
+.vistaPagos .summary {
+    margin-top: 14px;
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.vistaPagos .modalbg {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(0 0 0 / 75%);
+}
+
+.vistaPagos .modalbg[hidden] {
+    display: none !important;
+}
+
+.vistaPagos .modal {
+    width: 100%;
+    max-width: 440px;
+    padding: 24px;
+    border: 1px solid var(--verde);
+    border-radius: var(--radio-lg);
+    background: var(--superficie);
+}
+
+.vistaPagos .modal p {
+    color: var(--texto-suave);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.vistaPagos .modalactions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+@media (max-width: 1100px) {
+    .vistaPagos .form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* el buscador de socio ocupa el ancho completo */
+    .vistaPagos .form > .field:first-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 700px) {
+    .vistaPagos {
+        padding: 14px;
+    }
+
+    .vistaPagos .metrics {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .vistaPagos .metric {
+        padding: 16px;
+    }
+
+    .vistaPagos .metric strong {
+        font-size: 24px;
+    }
+
+    .vistaPagos .card {
+        padding: 16px;
+    }
+
+    .vistaPagos .form {
+        grid-template-columns: 1fr;
+    }
+
+    .vistaPagos .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .vistaPagos .filters .search {
+        grid-column: auto;
+    }
+}
+
+/* =====================================
+   MODAL DE CONFIRMACIÓN
+   (vive fuera de .vistaPagos, por eso tiene reglas propias)
+===================================== */
+.modalbg[role="dialog"] {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(0 0 0 / 75%);
+}
+
+.modalbg[hidden] {
+    display: none;
+}
+
+.modalbg[role="dialog"] .modal {
+    width: 100%;
+    max-width: 440px;
+    padding: 24px;
+    border: 1px solid var(--verde);
+    border-radius: var(--radio-lg);
+    background: var(--superficie);
+    color: var(--texto);
+}
+
+.modalbg .modal p {
+    color: var(--texto-suave);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.modalbg .modalactions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.modalbg .btn {
+    min-height: 40px;
+    padding: 11px 15px;
+    border: 1px solid transparent;
+    border-radius: var(--radio-sm);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.modalbg .btn.secondary {
+    background: var(--superficie-2);
+    color: var(--texto);
+    border-color: var(--verde);
+}
+
+.modalbg .btn.secondary:hover {
+    border-color: var(--verde);
+}
+
+.modalbg .btn.danger {
+    background: var(--rojo);
+    color: var(--negro);
+}
+
+.modalbg .btn.danger:hover {
+    background: var(--rojo-hover);
+}
+
+
+/* =========================================================
+   PAGOS: estado y botones de la tabla
+========================================================= */
+
+.vistaPagos .status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: var(--radio-sm);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.vistaPagos .status.valid {
+    background: var(--verde-fondo);
+    border: 1px solid var(--verde-borde);
+    color: var(--verde);
+}
+
+.vistaPagos .status.void {
+    background: var(--rojo-fondo);
+    border: 1px solid var(--rojo-borde);
+    color: var(--rojo-texto);
+}
+
+.vistaPagos .smallbtn {
+    padding: 7px 12px;
+    margin-right: 6px;
+    background: transparent;
+    border: 1px solid var(--verde-borde);
+    border-radius: var(--radio-sm);
+    color: var(--verde);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.vistaPagos .smallbtn:hover:not(:disabled) {
+    background: var(--verde);
+    color: var(--negro);
+}
+
+.vistaPagos .smallbtn[data-void] {
+    border-color: var(--rojo-borde);
+    color: var(--rojo-texto);
+}
+
+.vistaPagos .smallbtn[data-void]:hover:not(:disabled) {
+    background: var(--rojo);
+    color: var(--negro);
+}
+
+.vistaPagos .smallbtn:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.vistaPagos td small {
+    display: block;
+    margin-top: 2px;
+    color: var(--texto-tenue);
+    font-size: 11px;
+}
+
+/* ====== Footer  Italy Fitness Gym */
+.site-footer {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    color: #de0bb0;
+    background: #000000;
+    border-top: 1px solid #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.68rem;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.site-footer__logo {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    object-fit: contain;
+}
+.site-footer__text {
+    margin: 0;
+}
+
+@media (max-width: 420px) {
+    .site-footer {
+        gap: 0.3rem;
+        padding-inline: 0.4rem;
+        font-size: 0.6rem;
+    }
+
+    .site-footer__logo {
+        width: 16px;
+        height: 16px;
+        flex-basis: 16px;
+    }
+}

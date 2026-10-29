@@ -1,0 +1,382 @@
+
+#fichaSocio [hidden] {
+    display: none !important;
+}
+
+.fs-cabecera {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.fs-cabecera h2 {
+    margin: 0;
+}
+
+.fs-cabecera p {
+    margin-top: 4px;
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+.fs-mensaje {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border: 1px solid var(--verde-borde);
+    border-radius: var(--radio-sm);
+    background: var(--verde-fondo);
+    color: var(--verde);
+    font-size: 13px;
+}
+
+.fs-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--borde);
+}
+
+.fs-tab {
+    padding: 11px 18px;
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: var(--radio-sm) var(--radio-sm) 0 0;
+    color: var(--texto-suave);
+    font-weight: 700;
+}
+
+.fs-tab:hover {
+    color: var(--blanco);
+}
+
+.fs-tab.activa {
+    color: var(--verde);
+    border-bottom-color: var(--verde);
+}
+
+.fs-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+#fichaSocio .campo label {
+    color: var(--texto);
+}
+
+#fichaSocio .campo input,
+#fichaSocio .campo select {
+    width: 100%;
+    padding: 13px 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--blanco);
+    outline: none;
+    font-size: 14px;
+}
+
+#fichaSocio .campo input[type="date"] {
+    color-scheme: dark;
+}
+
+#fichaSocio .campo input:focus,
+#fichaSocio .campo select:focus {
+    border-color: var(--verde);
+}
+
+#fichaSocio .campo select option {
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+.fs-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.fs-form .fs-ancho,
+.fs-form .acciones-formulario {
+    grid-column: 1 / -1;
+}
+
+.fs-subtitulo {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--texto);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#fsUltimoPago {
+    margin-bottom: 10px;
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+#fsPagos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#fsPagos li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    font-size: 13px;
+}
+
+#fsPagos li strong {
+    color: var(--verde);
+}
+
+#fsPagos li.fs-anulado span,
+#fsPagos li.fs-anulado strong {
+    opacity: .55;
+}
+
+#fsPagos li.fs-anulado strong {
+    text-decoration: line-through;
+    color: var(--texto-suave);
+}
+
+#fsPagos li em {
+    color: var(--rojo-texto);
+    font-size: 11px;
+    font-style: normal;
+}
+
+#fsActividades {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.fs-actividad {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    cursor: pointer;
+}
+
+.fs-actividad:hover:not(.bloqueada) {
+    border-color: var(--verde);
+}
+
+.fs-actividad input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--verde);
+}
+
+.fs-actividad .fs-act-nombre {
+    font-weight: 600;
+}
+
+.fs-actividad small {
+    margin-left: auto;
+    color: var(--texto-tenue);
+}
+
+.fs-actividad.bloqueada {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.fs-vacio {
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+#fichaSocio .btn-cancelar {
+    color: var(--texto);
+    border-color: var(--borde-fuerte);
+}
+
+/* Botón "Gestionar" de la tabla */
+.btn-gestionar {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(115, 255, 56, .1);
+    color: var(--verde);
+    border: 1px solid var(--verde-borde);
+    border-radius: var(--radio-sm);
+}
+
+.btn-gestionar:hover {
+    background: var(--verde);
+    color: var(--negro);
+}
+
+/* La tabla de socios ahora lleva tres botones de acción */
+#vistaSocios table th:nth-child(5),
+#vistaSocios table td:nth-child(5) { width: 15%; }
+
+#vistaSocios table th:nth-child(7),
+#vistaSocios table td:nth-child(7) { width: 25%; }
+
+@media (max-width: 900px) {
+    .fs-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .fs-form {
+        grid-template-columns: 1fr;
+    }
+
+    .fs-tab {
+        flex: 1;
+        padding: 11px 8px;
+    }
+}
+
+/* Con tres botones, la celda de acciones vuelve a ser una celda normal de tabla
+   (con display:flex se salía de su columna y los botones quedaban tapados) */
+#vistaSocios td.acciones-tabla {
+    display: table-cell;
+    width: 25%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#vistaSocios td.acciones-tabla button {
+    vertical-align: middle;
+    margin: 0 3px;
+}
+
+
+/* ---------- Buscador de socio ---------- */
+
+.fs-resultados {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.fs-resultados:empty {
+    display: none;
+}
+
+.fs-resultados button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    text-align: left;
+    background: var(--superficie-2);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.fs-resultados button:hover {
+    border-color: var(--verde);
+}
+
+.fs-resultados button small {
+    color: var(--texto-tenue);
+    font-weight: 500;
+}
+
+.fs-ayuda {
+    margin-top: 12px;
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.fs-ayuda strong {
+    color: var(--verde);
+}
+
+.fs-cabecera h3 {
+    margin: 0;
+    color: var(--blanco);
+    font-size: 20px;
+}
+
+#vistaSocios table {
+    min-width: 880px;
+}
+
+/* El botón de la tabla ahora lleva texto */
+.btn-gestionar {
+    width: auto;
+    padding: 0 12px;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* ====== Footer  Italy Fitness Gym */
+.site-footer {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    color: #de0bb0;
+    background: #000000;
+    border-top: 1px solid #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.68rem;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.site-footer__logo {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    object-fit: contain;
+}
+.site-footer__text {
+    margin: 0;
+}
+
+@media (max-width: 420px) {
+    .site-footer {
+        gap: 0.3rem;
+        padding-inline: 0.4rem;
+        font-size: 0.6rem;
+    }
+
+    .site-footer__logo {
+        width: 16px;
+        height: 16px;
+        flex-basis: 16px;
+    }
+}

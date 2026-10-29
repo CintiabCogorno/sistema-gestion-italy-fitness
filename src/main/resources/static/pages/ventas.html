@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Gestión de Ventas </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/tema.css">
+    <link rel="stylesheet" href="../styles/estilos.css">
+    <link rel="stylesheet" href="../styles/ventas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<aside class="sidebar">
+    <div class="logo">
+        <img src="../img/logo-Italy-Fitness-transparente.png" alt="Logo Italy Fitness" class="logo-gym">
+    </div>
+
+    <p class="subtitulo">SISTEMA DE GESTIÓN</p>
+    <nav>
+        <a href="../index.html"><i class="fa-solid fa-gauge"></i> Inicio</a>
+        <a href="./socios.html" id="navSocios"><i class="fa-solid fa-users"></i> Socios</a>
+        <a href="./pagos.html" id="navPagos"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+        <a href="./actividades.html" id="navActividades"><i class="fa-solid fa-dumbbell"></i> Actividades</a>
+        <a href="./acceso.html" id="navAccesos"><i class="fa-solid fa-door-open"></i> Acceso</a>
+        <a href="./productos.html" id="navProductos"><i class="fa-solid fa-box"></i> Productos</a>
+        <a href="./ventas.html" id="navVentas" class="activo"><i class="fa-solid fa-cash-register"></i> Ventas</a>
+    </nav>
+</aside>
+
+<main class="contenido">
+<!-- VISTA DE VENTAS -->
+<div id="vistaVentas">
+
+    <!-- ENCABEZADO DE VENTAS -->
+    <header class="encabezado">
+        <div>
+            <p class="seccion">VENTAS</p>
+            <h1>GESTION DE VENTAS</h1>
+            <p class="descripcion">
+                Registrar las ventas de productos del gimnasio y consultar el historial.
+            </p>
+        </div>
+
+        <div class="usuario">
+            <i class="fa-solid fa-user"></i>
+            <span>Recepcionista</span>
+        </div>
+    </header>
+
+    <!-- RESUMEN -->
+    <section class="vta-metricas">
+        <div class="vta-metrica">
+            <span class="vta-metrica-titulo">VENTAS DE HOY</span>
+            <strong id="vtaMetricaHoy">—</strong>
+            <small id="vtaMetricaHoyDetalle">Sin contar anuladas</small>
+        </div>
+
+        <div class="vta-metrica">
+            <span class="vta-metrica-titulo">RECAUDACIÓN DEL MES</span>
+            <strong id="vtaMetricaMes">—</strong>
+            <small id="vtaMetricaMesDetalle">Sin contar anuladas</small>
+        </div>
+
+        <div class="vta-metrica">
+            <span class="vta-metrica-titulo">UNIDADES VENDIDAS DEL MES</span>
+            <strong id="vtaMetricaUnidades">—</strong>
+            <small>Sin contar anuladas</small>
+        </div>
+    </section>
+
+    <!-- REGISTRAR VENTA -->
+    <section class="panel">
+        <div class="titulo-panel">
+            <div class="icono-titulo"><i class="fa-solid fa-cash-register"></i></div>
+
+            <div>
+                <h2>REGISTRAR VENTA</h2>
+                <p>Buscá los productos, armá la venta y confirmala. El stock se descuenta solo.</p>
+            </div>
+        </div>
+
+        <div class="vta-registro">
+
+            <!-- IZQUIERDA: producto y socio -->
+            <div class="vta-col">
+                <div class="campo">
+                    <label for="vtaBuscarProducto">Producto</label>
+                    <input
+                            type="text"
+                            id="vtaBuscarProducto"
+                            autocomplete="off"
+                            placeholder="Buscar producto por nombre">
+                </div>
+                <div id="vtaResultadosProducto" class="vta-resultados"></div>
+
+                <div class="campo">
+                    <label for="vtaBuscarSocio">Socio (opcional)</label>
+                    <input
+                            type="text"
+                            id="vtaBuscarSocio"
+                            autocomplete="off"
+                            placeholder="Buscar por DNI, nombre o apellido">
+                </div>
+                <div id="vtaResultadosSocio" class="vta-resultados"></div>
+
+                <div id="vtaSocioElegido" class="vta-socio-elegido"></div>
+            </div>
+
+            <!-- DERECHA: detalle de la venta -->
+            <div class="vta-col">
+                <span class="vta-subtitulo">Detalle de la venta</span>
+
+                <div class="tabla-contenedor tabla-ventas tabla-carrito">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody id="vtaCarrito"></tbody>
+                    </table>
+
+                    <div class="tabla-vacia" id="vtaCarritoVacio">
+                        <p>Todavía no agregaste productos.</p>
+                        <span>Buscá un producto y tocalo para sumarlo a la venta.</span>
+                    </div>
+                </div>
+
+                <div class="vta-total">
+                    <span>TOTAL</span>
+                    <strong id="vtaTotal">$ 0,00</strong>
+                </div>
+
+                <div class="acciones-formulario">
+                    <button type="button" class="btn-guardar" id="btnRegistrarVenta" disabled>
+                        Registrar venta
+                    </button>
+
+                    <button type="button" class="btn-cancelar" id="btnVaciarVenta">
+                        Vaciar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HISTORIAL DE VENTAS -->
+    <section class="panel">
+        <div class="titulo-tabla">
+            <div>
+                <p class="seccion">HISTORIAL</p>
+                <h2>Ventas registradas</h2>
+            </div>
+
+            <button type="button" class="btn-cancelar" id="btnActualizarVentas">
+                Actualizar
+            </button>
+        </div>
+
+        <div class="vta-filtros">
+            <div class="campo vta-filtro-buscar">
+                <label for="vtaBuscar">Buscar</label>
+                <input
+                        type="text"
+                        id="vtaBuscar"
+                        placeholder="Socio o producto">
+            </div>
+
+            <div class="campo">
+                <label for="vtaDesde">Desde</label>
+                <input type="date" id="vtaDesde">
+            </div>
+
+            <div class="campo">
+                <label for="vtaHasta">Hasta</label>
+                <input type="date" id="vtaHasta">
+            </div>
+
+            <div class="campo">
+                <label for="vtaEstado">Estado</label>
+                <select id="vtaEstado">
+                    <option value="TODAS">Todas</option>
+                    <option value="VIGENTES">Vigentes</option>
+                    <option value="ANULADAS">Anuladas</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="tabla-contenedor tabla-ventas">
+            <table>
+                <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Fecha</th>
+                    <th>Socio</th>
+                    <th>Productos</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody id="tablaVentas"></tbody>
+            </table>
+
+            <div class="tabla-vacia" id="vtaTablaVacia">
+                <p id="vtaVaciaTitulo">No hay ventas registradas.</p>
+                <span id="vtaVaciaTexto">Registrá la primera venta con el formulario de arriba.</span>
+            </div>
+        </div>
+
+        <div id="vtaResumen" class="vta-resumen"></div>
+    </section>
+
+    <!-- DETALLE DE UNA VENTA -->
+    <div id="vtaModal" class="vta-modalbg" role="dialog" aria-modal="true" aria-labelledby="vtaModalTitulo" hidden>
+        <div class="vta-modal">
+            <h2 id="vtaModalTitulo">Detalle de la venta</h2>
+            <div id="vtaModalCuerpo"></div>
+
+            <div class="vta-modal-acciones">
+                <button type="button" class="btn-cancelar" id="btnVtaCerrar">Cerrar</button>
+                <button type="button" class="btn-eliminar-texto" id="btnVtaAnular">Anular venta</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- FIN DE VISTA DE VENTAS -->
+</main>
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
+
+<script src="../js/ventas.js"></script>
+</body>
+</html>

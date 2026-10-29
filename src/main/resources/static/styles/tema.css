@@ -1,0 +1,61 @@
+
+:root {
+    /* ---- Paleta de marca ---- */
+    --verde: #73FF38;
+    --blanco: #FFFFFF;
+    --rojo: #FF0000;
+    --negro: #000000;
+
+    /* ---- Superficies (negro con un poco de blanco) ---- */
+    --fondo: #000000;            /* fondo de la página y de los campos */
+    --superficie: #0F0F0F;       /* paneles, tarjetas, ventanas */
+    --superficie-2: #1A1A1A;     /* elementos dentro de un panel, hover */
+    --superficie-3: #262626;     /* elemento presionado / seleccionado */
+
+    /* ---- Líneas ---- */
+    --borde: #333333;            /* bordes normales */
+    --borde-fuerte: #5C5C5C;     /* bordes de campos y botones secundarios */
+
+    /* ---- Texto (blanco con distinta intensidad) ---- */
+    --texto: #FFFFFF;            /* títulos y datos principales */
+    --texto-suave: #C9C9C9;      /* descripciones y etiquetas (11:1 sobre negro) */
+    --texto-tenue: #A0A0A0;      /* ayudas y placeholders (7,5:1 sobre negro) */
+
+    /* ---- Verde: acentos, estados correctos, acción principal ---- */
+    --verde-hover: #91FF63;
+    --verde-fondo: rgba(115, 255, 56, .12);
+    --verde-borde: rgba(115, 255, 56, .45);
+
+    /* ---- Rojo: errores, anular, eliminar ---- */
+    --rojo-hover: #FF4D4D;
+    --rojo-texto: #FF6B6B;       /* rojo legible para texto sobre fondo oscuro */
+    --rojo-fondo: rgba(255, 0, 0, .14);
+    --rojo-borde: rgba(255, 0, 0, .65);
+
+    /* ---- Nombres anteriores (para no romper estilos viejos) ---- */
+    --gris: var(--texto-suave);
+    --gris-claro: var(--texto-suave);
+    --gris-oscuro: var(--superficie);
+    --rojo-suave: var(--rojo-texto);
+    --verde-principal: var(--verde);
+    --suave: var(--texto-suave);
+}
+
+/* Foco visible para quien navega con teclado */
+:focus-visible {
+    outline: 2px solid var(--verde);
+    outline-offset: 2px;
+}
+
+::selection {
+    background: var(--verde);
+    color: var(--negro);
+}
+
+/* Reduce el movimiento si el sistema lo pide */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation-duration: .01ms !important;
+    }
+}

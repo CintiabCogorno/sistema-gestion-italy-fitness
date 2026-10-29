@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IAccesoService {
 
-    Acceso registrarAcceso(Acceso acceso);
+    Acceso registrarAcceso(Acceso acceso, Long idSocio);
     List<Acceso> traerAccesos();
     List<Acceso> traerAccesosDenegados();
     List<Acceso> traerAccesosPorRango(LocalDateTime desde, LocalDateTime hasta);

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Gestión de Actividades</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/tema.css">
+    <link rel="stylesheet" href="../styles/estilos.css">
+    <link rel="stylesheet" href="../styles/actividades.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<aside class="sidebar">
+    <div class="logo">
+        <img src="../img/logo-Italy-Fitness-transparente.png" alt="Logo Italy Fitness" class="logo-gym">
+    </div>
+
+    <p class="subtitulo">SISTEMA DE GESTIÓN</p>
+    <nav>
+        <a href="../index.html"><i class="fa-solid fa-gauge"></i> Inicio</a>
+        <a href="./socios.html" id="navSocios"><i class="fa-solid fa-users"></i> Socios</a>
+        <a href="./pagos.html" id="navPagos"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+        <a href="./actividades.html" id="navActividades" class="activo"><i class="fa-solid fa-dumbbell"></i> Actividades</a>
+        <a href="./acceso.html" id="navAccesos"><i class="fa-solid fa-door-open"></i> Acceso</a>
+        <a href="./productos.html" id="navProductos"><i class="fa-solid fa-box"></i> Productos</a>
+        <a href="./ventas.html" id="navVentas"><i class="fa-solid fa-cash-register"></i> Ventas</a>
+    </nav>
+</aside>
+<main class="contenido">
+<div id="vistaActividades">
+    <!-- ENCABEZADO DE ACTIVIDADES -->
+    <header class="encabezado">
+        <div>
+            <p class="seccion">ACTIVIDADES</p>
+            <h1>GESTION DE ACTIVIDADES</h1>
+            <p class="descripcion">
+                Administrar las actividades del gimnasio y asignarlas a los socios.
+            </p>
+        </div>
+
+        <div class="usuario">
+            <i class="fa-solid fa-user"></i>
+            <span>Recepcionista</span>
+        </div>
+    </header>
+
+    <!-- FORMULARIO DE ACTIVIDADES -->
+    <section class="panel">
+        <div class="titulo-panel">
+            <div class="icono-titulo"><i class="fa-solid fa-dumbbell"></i></div>
+
+            <div>
+                <h2 id="tituloFormActividad">REGISTRAR ACTIVIDAD</h2>
+                <p>Cargá las actividades que ofrece el gimnasio (musculación, yoga, etc.).</p>
+            </div>
+        </div>
+
+        <form id="formActividad">
+            <div class="formulario">
+                <div class="campo">
+                    <label for="actNombre">Nombre</label>
+                    <input
+                            type="text"
+                            id="actNombre"
+                            maxlength="50"
+                            placeholder="Ej.: Musculación"
+                            required>
+                </div>
+
+                <div class="campo">
+                    <label for="actDescripcion">Descripción</label>
+                    <input
+                            type="text"
+                            id="actDescripcion"
+                            maxlength="200"
+                            placeholder="Ej.: Acceso a sala de pesas y máquinas">
+                </div>
+
+                <div class="campo">
+                    <label for="actPrecio">Precio de la cuota ($)</label>
+                    <input
+                            type="number"
+                            id="actPrecio"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="0.00"
+                            required>
+                </div>
+
+                <div class="campo">
+                    <label for="actDisponible">Disponibilidad</label>
+                    <select id="actDisponible">
+                        <option value="true">Disponible</option>
+                        <option value="false">No disponible</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="acciones-formulario">
+                <button type="submit" class="btn-guardar" id="btnGuardarActividad">
+                    Guardar actividad
+                </button>
+
+                <button type="button" class="btn-cancelar" id="btnCancelarActividad" hidden>
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- LISTADO DE ACTIVIDADES -->
+    <section class="panel">
+        <div class="titulo-tabla">
+            <div>
+                <p class="seccion">CATÁLOGO</p>
+                <h2>Actividades registradas</h2>
+            </div>
+
+            <div class="cantidad">
+                <span id="cantidadActividades">0</span>
+                actividades
+            </div>
+        </div>
+
+        <!-- BUSCAR ACTIVIDAD -->
+        <div class="busqueda-dni">
+            <div class="campo-busqueda">
+                <label for="actBuscar">Buscar actividad</label>
+
+                <div class="input-busqueda">
+                    <input
+                            type="text"
+                            id="actBuscar"
+                            placeholder="Nombre o descripción">
+                </div>
+            </div>
+        </div>
+
+        <div class="tabla-contenedor tabla-actividades">
+            <table>
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Cuota</th>
+                    <th>Inscriptos</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody id="tablaActividades"></tbody>
+            </table>
+
+            <div class="tabla-vacia" id="actTablaVacia">
+                <p id="actVaciaTitulo">No hay actividades registradas.</p>
+                <span id="actVaciaTexto">Utilice el formulario para agregar una actividad.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASIGNAR ACTIVIDADES A UN SOCIO -->
+    <section class="panel">
+        <div class="titulo-panel">
+            <div class="icono-titulo"><i class="fa-solid fa-user-check"></i></div>
+
+            <div>
+                <h2>ASIGNAR ACTIVIDADES A UN SOCIO</h2>
+                <p>Buscá al socio y elegí las actividades que realiza.</p>
+            </div>
+        </div>
+
+        <div class="asignacion">
+            <div class="asig-col">
+                <div class="campo">
+                    <label for="actBuscarSocio">Socio</label>
+                    <input
+                            type="text"
+                            id="actBuscarSocio"
+                            autocomplete="off"
+                            placeholder="Buscar por DNI, nombre o apellido">
+                </div>
+
+                <div id="actResultadosSocio" class="act-resultados"></div>
+                <div id="actSocioElegido" class="act-socio-elegido" hidden></div>
+            </div>
+
+            <div class="asig-col">
+                <span class="asig-subtitulo">Actividades</span>
+                <div id="actListaChecks" class="act-checks"></div>
+
+                <div class="acciones-formulario">
+                    <button type="button" class="btn-guardar" id="btnGuardarAsignacion" disabled>
+                        Guardar actividades
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIVIDAD DE CADA SOCIO -->
+    <section class="panel">
+        <div class="titulo-tabla">
+            <div>
+                <p class="seccion">INSCRIPCIONES</p>
+                <h2>Actividad de cada socio</h2>
+            </div>
+
+            <div class="cantidad">
+                <span id="cantidadInscripciones">0</span>
+                socios
+            </div>
+        </div>
+
+        <div class="act-filtros">
+            <div class="campo">
+                <label for="actFiltro">Mostrar</label>
+                <select id="actFiltro">
+                    <option value="TODAS">Todos los socios</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="tabla-contenedor tabla-actividades">
+            <table>
+                <thead>
+                <tr>
+                    <th>Socio</th>
+                    <th>DNI</th>
+                    <th>Actividades</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody id="tablaInscripciones"></tbody>
+            </table>
+
+            <div class="tabla-vacia" id="actInscripcionesVacia" hidden>
+                <p>No hay socios para mostrar.</p>
+                <span>Probá con otro filtro.</span>
+            </div>
+        </div>
+    </section>
+
+</div>
+</main>
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
+
+<script src="../js/actividades.js"></script>
+</body>
+</html>

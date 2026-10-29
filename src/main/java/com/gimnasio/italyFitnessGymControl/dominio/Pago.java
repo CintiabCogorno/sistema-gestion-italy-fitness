@@ -1,5 +1,6 @@
 package com.gimnasio.italyFitnessGymControl.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -27,6 +28,7 @@ public class Pago {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "socio_id")
+    @JsonIgnore
     private Socio socio;
 
     public Socio getSocio() {
@@ -49,17 +51,18 @@ public class Pago {
     }
 
     public boolean estaVencido() {
-        // Lógica pendiente: comparar fechaPago + período de vigencia contra la fecha actual
-        return false;
-    }
+        if (fechaPago == null) {
+            return true;
+        }
+        return LocalDate.now().isAfter(fechaPago.plusDays(30));
+        }
+        public Long getIdPago () {
+            return idPago;
+        }
 
-    public Long getIdPago() {
-        return idPago;
-    }
-
-    public void setIdPago(Long idPago) {
-        this.idPago = idPago;
-    }
+        public void setIdPago (Long idPago){
+            this.idPago = idPago;
+        }
 
     public LocalDate getFechaPago() {
         return fechaPago;

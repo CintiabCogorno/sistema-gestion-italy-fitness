@@ -9,6 +9,7 @@ import java.util.List;
 public interface IPagoRepository extends JpaRepository<Pago, Long> {
 
     List<Pago> findByAnuladoFalse();
-
     List<Pago> findByFechaPagoBetween(LocalDate desde, LocalDate hasta);
+    List<Pago> findBySocio_IdAndAnuladoFalseOrderByFechaPagoDesc(Long idSocio);
+
 }

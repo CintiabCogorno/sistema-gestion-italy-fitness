@@ -1,0 +1,549 @@
+/* =========================================================
+   VISTA DE VENTAS - ITALY FITNESS
+   (se carga después de estilos.css)
+========================================================= */
+
+#vistaVentas [hidden] {
+    display: none !important;
+}
+
+#vistaVentas .icono-titulo {
+    justify-content: center;
+}
+
+/* Textos que en el resto del sistema son gris oscuro:
+   acá se leen bien sobre el fondo oscuro */
+#vistaVentas .descripcion,
+#vistaVentas .titulo-panel p {
+    color: var(--texto-suave);
+}
+
+#vistaVentas .campo label,
+.vta-subtitulo {
+    color: var(--texto);
+}
+
+.vta-subtitulo {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#vistaVentas .campo select,
+#vistaVentas .campo input[type="date"] {
+    width: 100%;
+    padding: 13px 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--blanco);
+    outline: none;
+    font-size: 14px;
+    transition: .2s;
+}
+
+#vistaVentas .campo input[type="date"] {
+    color-scheme: dark;
+}
+
+#vistaVentas .campo select:focus,
+#vistaVentas .campo input[type="date"]:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 2px rgba(115, 255, 56, .08);
+}
+
+#vistaVentas .campo select option {
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+
+/* ---------- Resumen ---------- */
+
+.vta-metricas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.vta-metrica {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    padding: 20px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+}
+
+.vta-metrica-titulo {
+    color: var(--texto-suave);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .7px;
+}
+
+.vta-metrica strong {
+    color: var(--verde);
+    font-size: 28px;
+    overflow-wrap: anywhere;
+}
+
+.vta-metrica small {
+    color: var(--texto-tenue);
+    font-size: 11px;
+}
+
+
+/* ---------- Registrar venta ---------- */
+
+.vta-registro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.vta-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+.vta-resultados {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.vta-resultados:empty {
+    display: none;
+}
+
+.vta-resultados button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    text-align: left;
+    background: var(--superficie-2);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.vta-resultados button:hover:not(:disabled) {
+    border-color: var(--verde);
+}
+
+.vta-resultados button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.vta-resultados button small {
+    color: var(--texto-tenue);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.vta-sin-resultados {
+    padding: 4px 2px;
+    color: var(--texto-tenue);
+    font-size: 12px;
+}
+
+.vta-socio-elegido {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    background: var(--superficie);
+    color: var(--texto);
+    font-size: 13px;
+}
+
+.vta-socio-elegido.con-socio {
+    border-color: var(--verde-borde);
+    background: var(--verde-fondo);
+    color: var(--verde);
+}
+
+.vta-socio-elegido small {
+    display: block;
+    margin-top: 2px;
+    color: var(--texto-tenue);
+    font-size: 11px;
+}
+
+.vta-socio-elegido button {
+    margin-left: auto;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    background: transparent;
+    color: var(--texto-suave);
+}
+
+.vta-socio-elegido button:hover {
+    background: var(--superficie-2);
+    color: var(--blanco);
+}
+
+
+/* ---------- Tablas (anulan las columnas fijas de la tabla de socios) ---------- */
+
+.tabla-ventas table {
+    table-layout: auto;
+    min-width: 820px;
+}
+
+.tabla-ventas.tabla-carrito table {
+    min-width: 440px;
+}
+
+.tabla-ventas table th,
+.tabla-ventas table td {
+    width: auto;
+    text-align: left;
+}
+
+.tabla-ventas table th:last-child,
+.tabla-ventas table td:last-child {
+    width: 130px;
+    text-align: center;
+}
+
+.tabla-ventas.tabla-carrito table th:last-child,
+.tabla-ventas.tabla-carrito table td:last-child {
+    width: 56px;
+}
+
+.vta-nombre {
+    font-weight: 700;
+    color: var(--blanco);
+}
+
+.vta-muted {
+    color: var(--texto-tenue);
+    font-size: 12px;
+}
+
+.vta-productos {
+    max-width: 320px;
+    color: var(--texto);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.vta-importe {
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.tabla-ventas .acciones-tabla {
+    flex-wrap: nowrap;
+}
+
+.vta-anulada td {
+    opacity: .55;
+}
+
+.vta-anulada td:nth-child(6),
+.vta-anulada td:last-child {
+    opacity: 1;
+}
+
+.vta-anulada .vta-importe {
+    text-decoration: line-through;
+}
+
+.btn-eliminar:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ---------- Cantidad del carrito ---------- */
+
+.vta-cant {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.vta-cant button {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--superficie-2);
+    border: 1px solid var(--borde);
+    color: var(--texto);
+    font-size: 14px;
+}
+
+.vta-cant button:hover:not(:disabled) {
+    border-color: var(--verde);
+}
+
+.vta-cant button:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.vta-cant input {
+    width: 52px;
+    padding: 6px 4px;
+    text-align: center;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-sm);
+    color: var(--blanco);
+    font-size: 14px;
+    outline: none;
+}
+
+.vta-cant input:focus {
+    border-color: var(--verde);
+}
+
+.vta-quitar {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 0, 0, .08);
+    color: var(--rojo-suave);
+    border: 1px solid var(--rojo-borde);
+}
+
+.vta-quitar:hover {
+    background: var(--rojo);
+    color: var(--negro);
+}
+
+
+/* ---------- Total ---------- */
+
+.vta-total {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    border: 1px solid var(--verde-borde);
+    border-radius: var(--radio-sm);
+    background: var(--verde-fondo);
+}
+
+.vta-total span {
+    color: var(--texto-suave);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.vta-total strong {
+    color: var(--verde);
+    font-size: 26px;
+}
+
+#btnRegistrarVenta:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ---------- Historial ---------- */
+
+.vta-filtros {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.vta-resumen {
+    margin-top: 14px;
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.vta-resumen strong {
+    color: var(--verde);
+}
+
+
+/* ---------- Ventana de detalle ---------- */
+
+.vta-modalbg {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .75);
+}
+
+.vta-modal {
+    width: 100%;
+    max-width: 620px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 24px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio-lg);
+    color: var(--texto);
+}
+
+.vta-modal h2 {
+    margin-bottom: 14px;
+}
+
+.vta-modal-datos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    margin-bottom: 16px;
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+.vta-modal table {
+    min-width: 0;
+    table-layout: auto;
+}
+
+.vta-modal .tabla-contenedor {
+    margin-bottom: 14px;
+}
+
+.vta-modal-acciones {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.btn-eliminar-texto {
+    padding: 13px 22px;
+    background: var(--rojo);
+    color: var(--negro);
+}
+
+.btn-eliminar-texto:hover {
+    background: var(--rojo-hover);
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1000px) {
+    .vta-registro {
+        grid-template-columns: 1fr;
+    }
+
+    .vta-filtros {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vta-filtro-buscar {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 750px) {
+    .vta-metricas {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .vta-metrica strong {
+        font-size: 24px;
+    }
+
+    .vta-filtros {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ---------- Legibilidad sobre fondo oscuro ---------- */
+
+#vistaVentas .btn-cancelar {
+    color: var(--texto);
+    border-color: var(--borde-fuerte);
+}
+
+#vistaVentas .btn-cancelar:hover {
+    color: var(--blanco);
+    border-color: var(--blanco);
+}
+
+#vistaVentas .tabla-vacia p {
+    color: var(--blanco);
+}
+
+#vistaVentas .tabla-vacia span {
+    color: var(--texto-suave);
+}
+/* ====== Footer  Italy Fitness Gym */
+.site-footer {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    color: #de0bb0;
+    background: #000000;
+    border-top: 1px solid #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.68rem;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.site-footer__logo {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    object-fit: contain;
+}
+.site-footer__text {
+    margin: 0;
+}
+
+@media (max-width: 420px) {
+    .site-footer {
+        gap: 0.3rem;
+        padding-inline: 0.4rem;
+        font-size: 0.6rem;
+    }
+
+    .site-footer__logo {
+        width: 16px;
+        height: 16px;
+        flex-basis: 16px;
+    }
+}

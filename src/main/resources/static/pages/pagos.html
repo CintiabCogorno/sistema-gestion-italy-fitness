@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Gestión de Pagos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/tema.css">
+    <link rel="stylesheet" href="../styles/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<aside class="sidebar">
+    <div class="logo">
+        <img src="../img/logo-Italy-Fitness-transparente.png" alt="Logo Italy Fitness" class="logo-gym">
+    </div>
+
+    <p class="subtitulo">SISTEMA DE GESTIÓN</p>
+    <nav>
+        <a href="../index.html"><i class="fa-solid fa-gauge"></i> Inicio</a>
+        <a href="./socios.html" id="navSocios"><i class="fa-solid fa-users"></i> Socios</a>
+        <a href="./pagos.html" id="navPagos" class="activo"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+        <a href="./actividades.html" id="navActividades"><i class="fa-solid fa-dumbbell"></i> Actividades</a>
+        <a href="./acceso.html" id="navAccesos"><i class="fa-solid fa-door-open"></i> Acceso</a>
+        <a href="./productos.html" id="navProductos"><i class="fa-solid fa-box"></i> Productos</a>
+        <a href="./ventas.html" id="navVentas"><i class="fa-solid fa-cash-register"></i> Ventas</a>
+    </nav>
+</aside>
+<!----- VISTA DE PAGOS ---->
+<main class="contenido">
+<div id="vistaPagos" class="vistaPagos">
+    <div id="notice" class="notice" role="status" aria-live="polite"></div>
+    <section class="top">
+        <div>
+            <div class="eyebrow">PAGOS</div>
+            <h1>GESTION DE PAGOS</h1>
+            <div class="sub">Registro de cuotas y pagos de los socios</div>
+        </div>
+
+    </section>
+    <section class="metrics">
+        <div class="metric"><label>PAGOS</label>
+            <strong id="metricTotal">—</strong>
+            <small>Registros</small></div>
+        <div class="metric"><label>RECAUDACIÓN DEL MES</label><strong id="metricMonth">—</strong><small>Pagos no
+            anulados del mes actual</small></div>
+        <div class="metric"><label>SOCIOS REGISTRADOS</label><strong id="metricSocios">—</strong><small> Sin pagos Asociados </small></div>
+    </section>
+
+    <section class="columns">
+        <section class="card">
+            <div class="cardhead">
+                <h2 id="formTitle">REGISTRAR PAGO</h2>
+                <div class="sub">Asociá una cuota a un socio ya registrado.</div>
+            </div>
+            <form id="pagoForm" class="form">
+                <div class="field">
+                    <label for="buscarSocio">SOCIO *</label>
+                    <input id="buscarSocio" autocomplete="off"
+                           placeholder="Buscar por DNI, nombre o apellido"
+                           required>
+
+                    <div id="results" class="results"></div>
+                    <div id="selected" class="selected"></div>
+                    <div class="hint">Seleccioná un socio existente.
+                    </div>
+                </div>
+
+                <div class="twocol">
+                    <div class="field">
+                        <label for="fechaPago">FECHA DE PAGO</label>
+                        <input id="fechaPago" type="date" required></div>
+                    <div class="field">
+                        <label for="valorCuota">IMPORTE ($) </label>
+                        <input id="valorCuota" type="number" min=".01" step=".01"
+                               placeholder="Ej. 25000" required></div>
+                </div>
+                <div class="field">
+                    <label for="medioPago">MEDIO DE PAGO</label>
+
+                    <select id="medioPago" required>
+                        <option value="">Seleccionar medio</option>
+                        <option value="EFECTIVO">Efectivo</option>
+                        <option value="TRANSFERENCIA">Transferencia</option>
+                        <option value="DEBITO">Tarjeta de débito</option>
+                        <option value="CREDITO">Tarjeta de crédito</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </div>
+
+                <div class="actions">
+                    <button id="submitBtn" class="btn primary" type="submit">REGISTRAR PAGO</button>
+                    <button id="cancelEdit" class="btn secondary" type="button" hidden>Cancelar edición</button>
+                    <button id="clearForm" class="btn secondary" type="button">Limpiar</button>
+                </div>
+            </form>
+        </section>
+        <section class="card">
+            <div class="cardhead"
+                 style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
+                <div>
+                    <h2>HISTORIAL DE PAGOS </h2>
+                    <div class="sub">Buscá, editá o anulá pagos.</div>
+                </div>
+                <button id="refresh" class="btn secondary" type="button">Actualizar</button>
+            </div>
+            <div class="filters">
+                <input id="search" class="search"
+                       placeholder="Buscar socio, DNI o medio de pago">
+                <input id="desde" type="date" aria-label="Desde">
+                <input id="hasta" type="date" aria-label="Hasta">
+                <select id="statusFilter">
+                    <option value="TODOS">Todos los estados</option>
+                    <option value="ACTIVO">Aprobado</option>
+                    <option value="ANULADO">Anulados</option>
+                </select>
+            </div>
+
+            <div class="tablewrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Socio</th>
+                        <th>Fecha</th>
+                        <th>Importe</th>
+                        <th>Medio</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    <tr>
+                        <td colspan="7" class="empty">Cargando pagos...</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="summary" class="summary"></div>
+        </section>
+    </section>
+</div>
+<div id="modalbg" class="modalbg" role="dialog" aria-modal="true" hidden>
+    <div class="modal"><h2>Confirmar anulación</h2>
+        <p id="modalText">El pago se conservará en el historial.</p>
+        <div class="modalactions">
+            <button id="modalCancel" class="btn secondary">Volver</button>
+            <button id="modalConfirm" class="btn danger">Confirmar anulación</button>
+        </div>
+    </div>
+</div>
+</main>
+<!----- FIN VISTA DE PAGOS ---->
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
+
+<script src="../js/pagos.js"></script>
+</body>
+</html>
+
