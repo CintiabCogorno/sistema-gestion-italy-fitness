@@ -1,0 +1,188 @@
+/* =========================================================
+   PANTALLA DE LOGIN
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.login-fondo {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background: url('../img/7.jpeg') center / cover no-repeat, var(--fondo);
+}
+
+.login-velo {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, .65), rgba(0, 0, 0, .88) 100%);
+}
+
+.login-pantalla {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+}
+
+.login-caja {
+    width: 100%;
+    max-width: 420px;
+    padding: 36px 32px 28px;
+    background: rgba(15, 15, 15, .94);
+    border: 1px solid var(--verde-borde);
+    border-radius: var(--radio-lg, 14px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+    text-align: center;
+}
+
+.login-logo {
+    width: 150px;
+    max-width: 60%;
+    margin: -26px auto -6px;   /* la imagen trae aire arriba y abajo */
+    display: block;
+}
+
+.login-caja h1 {
+    margin: 0 0 6px;
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+.login-sub {
+    margin: 0 0 26px;
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+.login-campo {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.login-campo label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--texto);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.login-campo input {
+    width: 100%;
+    padding: 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio-sm, 8px);
+    color: var(--texto);
+    font-size: 15px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.login-campo input::placeholder {
+    color: var(--texto-tenue);
+}
+
+.login-campo input:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px var(--verde-fondo);
+}
+
+.login-clave {
+    position: relative;
+}
+
+.login-clave input {
+    padding-right: 90px;
+}
+
+.login-clave button {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    padding: 7px 10px;
+    background: transparent;
+    border: 0;
+    border-radius: var(--radio-sm, 8px);
+    color: var(--verde);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.login-clave button:hover {
+    background: var(--verde-fondo);
+}
+
+.login-mensaje {
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    background: var(--rojo-fondo);
+    border: 1px solid var(--rojo-borde);
+    border-radius: var(--radio-sm, 8px);
+    color: var(--rojo-texto);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.login-mensaje[hidden] {
+    display: none;
+}
+
+.login-boton {
+    width: 100%;
+    padding: 15px;
+    background: var(--verde);
+    border: 0;
+    border-radius: var(--radio-sm, 8px);
+    color: var(--negro);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+}
+
+.login-boton:hover:not(:disabled) {
+    background: var(--verde-hover);
+    transform: translateY(-1px);
+}
+
+.login-boton:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.login-pie {
+    margin: 22px 0 0;
+    color: var(--texto-tenue);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+    .login-caja {
+        padding: 28px 20px 22px;
+    }
+}

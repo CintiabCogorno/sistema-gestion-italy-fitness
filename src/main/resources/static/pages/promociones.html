@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Gestión de Promociones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/tema.css">
+    <link rel="stylesheet" href="../styles/estilos.css">
+    <link rel="stylesheet" href="../styles/actividades.css">
+    <link rel="stylesheet" href="/styles/notificaciones.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="../js/sesion.js"></script>
+</head>
+<body>
+<aside class="sidebar">
+    <div class="logo">
+        <img src="../img/logo-Italy-Fitness-transparente.png" alt="Logo Italy Fitness" class="logo-gym">
+    </div>
+
+    <p class="subtitulo">SISTEMA DE GESTIÓN</p>
+    <nav>
+        <a href="../index.html"><i class="fa-solid fa-gauge"></i> Inicio</a>
+        <a href="./socios.html" id="navSocios"><i class="fa-solid fa-users"></i> Socios</a>
+        <a href="./pagos.html" id="navPagos"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+        <a href="./actividades.html" id="navActividades"><i class="fa-solid fa-dumbbell"></i> Actividades</a>
+        <a href="./acceso.html" id="navAccesos"><i class="fa-solid fa-door-open"></i> Acceso</a>
+        <a href="./productos.html" id="navProductos"><i class="fa-solid fa-box"></i> Productos</a>
+        <a href="./ventas.html" id="navVentas"><i class="fa-solid fa-cash-register"></i> Ventas</a>
+        <a href="./promociones.html" id="navPromociones" class="activo"><i class="fa-solid fa-tags"></i> Promociones</a>
+        <a href="./caja.html" id="navCaja"><i class="fa-solid fa-vault"></i> Caja</a>
+    </nav>
+</aside>
+<main class="contenido">
+<div id="vistaPromociones">
+    <!-- ENCABEZADO -->
+    <header class="encabezado">
+        <div>
+            <p class="seccion">PROMOCIONES</p>
+            <h1>GESTION DE PROMOCIONES</h1>
+            <p class="descripcion">
+                Descuentos con fechas de vigencia. Se aplican únicamente a la cuota del gimnasio, no a los productos.
+            </p>
+        </div>
+
+        <div class="usuario">
+            <i class="fa-solid fa-user"></i>
+            <span>Administrador</span>
+        </div>
+    </header>
+
+    <!-- FORMULARIO -->
+    <section class="panel">
+        <div class="titulo-panel">
+            <div class="icono-titulo"><i class="fa-solid fa-tags"></i></div>
+
+            <div>
+                <h2 id="tituloFormPromo">REGISTRAR PROMOCIÓN</h2>
+                <p>Solo el Administrador crea y modifica promociones.</p>
+            </div>
+        </div>
+
+        <form id="formPromo">
+            <div class="formulario">
+                <div class="campo">
+                    <label for="promoDescripcion">Descripción</label>
+                    <input
+                            type="text"
+                            id="promoDescripcion"
+                            maxlength="100"
+                            placeholder="Ej.: Promo verano"
+                            required>
+                </div>
+
+                <div class="campo">
+                    <label for="promoPorcentaje">Descuento (%)</label>
+                    <input
+                            type="number"
+                            id="promoPorcentaje"
+                            min="0.01"
+                            max="100"
+                            step="0.01"
+                            placeholder="Ej.: 15"
+                            required>
+                </div>
+
+                <div class="campo">
+                    <label for="promoDesde">Vigente desde</label>
+                    <input type="date" id="promoDesde" required>
+                </div>
+
+                <div class="campo">
+                    <label for="promoHasta">Vigente hasta</label>
+                    <input type="date" id="promoHasta" required>
+                </div>
+
+                <div class="campo">
+                    <label for="promoActiva">Estado</label>
+                    <select id="promoActiva">
+                        <option value="true">Activa</option>
+                        <option value="false">Inactiva</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="acciones-formulario">
+                <button type="submit" class="btn-guardar" id="btnGuardarPromo">
+                    Guardar promoción
+                </button>
+
+                <button type="button" class="btn-cancelar" id="btnCancelarPromo" hidden>
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- LISTADO -->
+    <section class="panel">
+        <div class="titulo-tabla">
+            <div>
+                <p class="seccion">CATÁLOGO</p>
+                <h2>Promociones registradas</h2>
+            </div>
+
+            <div class="cantidad">
+                <span id="cantidadPromos">0</span>
+                promociones
+            </div>
+        </div>
+
+        <div class="busqueda-dni">
+            <div class="campo-busqueda">
+                <label for="promoBuscar">Buscar promoción</label>
+
+                <div class="input-busqueda">
+                    <input type="text" id="promoBuscar" placeholder="Descripción">
+                </div>
+            </div>
+        </div>
+
+        <div class="tabla-contenedor tabla-actividades">
+            <table>
+                <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Descuento</th>
+                    <th>Vigencia</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody id="tablaPromos"></tbody>
+            </table>
+
+            <div class="tabla-vacia" id="promoTablaVacia">
+                <p id="promoVaciaTitulo">No hay promociones registradas.</p>
+                <span id="promoVaciaTexto">Utilice el formulario para agregar una promoción.</span>
+            </div>
+        </div>
+    </section>
+</div>
+</main>
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
+
+<script src="/js/notificaciones.js"></script>
+<script src="../js/promociones.js"></script>
+</body>
+</html>

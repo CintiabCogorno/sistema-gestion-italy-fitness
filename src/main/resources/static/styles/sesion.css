@@ -1,0 +1,176 @@
+/* =========================================================
+   SESIÓN: datos del usuario, avisos y ventana de contraseña
+   (se carga sola desde js/sesion.js)
+========================================================= */
+
+/* ---------- Lo que no ve la recepción (el servidor igual lo bloquea) ---------- */
+html[data-rol="RECEPCIONISTA"] #vistaSocios .btn-eliminar,   /* eliminar socio */
+html[data-rol="RECEPCIONISTA"] #vistaVentas .btn-eliminar,   /* anular venta */
+html[data-rol="RECEPCIONISTA"] #btnVtaAnular {
+    display: none !important;
+}
+
+/* ---------- Bloque de usuario en el menú ---------- */
+.sesion-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--borde);
+}
+
+.sesion-rol {
+    align-self: flex-start;
+    padding: 3px 8px;
+    background: var(--verde-fondo);
+    border: 1px solid var(--verde-borde);
+    border-radius: var(--radio-sm);
+    color: var(--verde);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+}
+
+.sesion-nombre {
+    margin-top: 6px;
+    color: var(--texto);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.sesion-usuario {
+    margin-bottom: 8px;
+    color: var(--texto-tenue);
+    font-size: 12px;
+}
+
+.sesion-link {
+    padding: 9px 0;
+    background: transparent;
+    border: 0;
+    color: var(--texto-suave);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sesion-link:hover {
+    color: var(--verde);
+}
+
+.sesion-link.sesion-salir:hover {
+    color: var(--rojo-texto);
+}
+
+/* ---------- Aviso flotante ---------- */
+.sesion-aviso {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 340px;
+    padding: 14px 18px;
+    background: var(--superficie-2);
+    border: 1px solid var(--borde-fuerte);
+    border-left: 4px solid var(--verde);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity .2s, transform .2s;
+}
+
+.sesion-aviso.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* ---------- Ventana de cambio de contraseña ---------- */
+.sesion-fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .78);
+}
+
+.sesion-modal {
+    width: 100%;
+    max-width: 400px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 26px;
+    background: var(--superficie);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio-lg);
+    color: var(--texto);
+}
+
+.sesion-modal h2 {
+    margin-bottom: 6px;
+}
+
+.sesion-ayuda {
+    margin-bottom: 16px;
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.sesion-modal label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.sesion-modal input {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    font-size: 14px;
+    outline: none;
+}
+
+.sesion-modal input:focus {
+    border-color: var(--verde);
+}
+
+.sesion-msg {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: var(--rojo-fondo);
+    border: 1px solid var(--rojo-borde);
+    border-radius: var(--radio-sm);
+    color: var(--rojo-texto);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.sesion-msg[hidden] {
+    display: none;
+}
+
+.sesion-acciones {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.sesion-modal .btn-cancelar {
+    color: var(--texto-suave);
+    border-color: var(--borde-fuerte);
+}

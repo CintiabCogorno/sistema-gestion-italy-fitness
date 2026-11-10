@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Caja</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/tema.css">
+    <link rel="stylesheet" href="../styles/estilos.css">
+    <link rel="stylesheet" href="../styles/caja.css">
+    <link rel="stylesheet" href="/styles/notificaciones.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="../js/sesion.js"></script>
+</head>
+<body>
+<aside class="sidebar">
+    <div class="logo">
+        <img src="../img/logo-Italy-Fitness-transparente.png" alt="Logo Italy Fitness" class="logo-gym">
+    </div>
+
+    <p class="subtitulo">SISTEMA DE GESTIÓN</p>
+    <nav>
+        <a href="../index.html"><i class="fa-solid fa-gauge"></i> Inicio</a>
+        <a href="./socios.html" id="navSocios"><i class="fa-solid fa-users"></i> Socios</a>
+        <a href="./pagos.html" id="navPagos"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+        <a href="./actividades.html" id="navActividades"><i class="fa-solid fa-dumbbell"></i> Actividades</a>
+        <a href="./acceso.html" id="navAccesos"><i class="fa-solid fa-door-open"></i> Acceso</a>
+        <a href="./productos.html" id="navProductos"><i class="fa-solid fa-box"></i> Productos</a>
+        <a href="./ventas.html" id="navVentas"><i class="fa-solid fa-cash-register"></i> Ventas</a>
+        <a href="./promociones.html" id="navPromociones"><i class="fa-solid fa-tags"></i> Promociones</a>
+        <a href="./caja.html" id="navCaja" class="activo"><i class="fa-solid fa-vault"></i> Caja</a>
+    </nav>
+</aside>
+
+<main class="contenido">
+<!-- VISTA DE CAJA -->
+<div id="vistaCaja">
+
+    <header class="encabezado">
+        <div>
+            <p class="seccion">CAJA</p>
+            <h1>CONTROL DE CAJA</h1>
+            <p class="descripcion">
+                Todo el dinero del gimnasio en un solo lugar: las cuotas y las ventas entran solas;
+                las compras, los sueldos y otros gastos se cargan acá. Esta pantalla es solo del administrador.
+            </p>
+        </div>
+
+        <div class="usuario">
+            <i class="fa-solid fa-user"></i>
+            <span>Administrador</span>
+        </div>
+    </header>
+
+    <div id="cajaMensaje" class="caja-mensaje" role="status" aria-live="polite" hidden></div>
+
+    <!-- RESUMEN DEL PERÍODO -->
+    <section class="caja-metricas" aria-label="Resumen de la caja">
+        <div class="caja-metrica">
+            <span class="caja-metrica-titulo">INGRESOS DEL PERÍODO</span>
+            <strong id="cajaIngresos" class="caja-ingreso">—</strong>
+            <small>Cuotas y ventas</small>
+        </div>
+
+        <div class="caja-metrica">
+            <span class="caja-metrica-titulo">EGRESOS DEL PERÍODO</span>
+            <strong id="cajaEgresos" class="caja-egreso">—</strong>
+            <small>Compras, sueldos y otros gastos</small>
+        </div>
+
+        <div class="caja-metrica">
+            <span class="caja-metrica-titulo">SALDO DEL PERÍODO</span>
+            <strong id="cajaSaldo">—</strong>
+            <small>Ingresos menos egresos</small>
+        </div>
+
+        <div class="caja-metrica caja-metrica-total">
+            <span class="caja-metrica-titulo">SALDO TOTAL EN CAJA</span>
+            <strong id="cajaSaldoTotal">—</strong>
+            <small>Desde el inicio, sin importar el período</small>
+        </div>
+    </section>
+
+    <!-- REGISTRAR EGRESO -->
+    <section class="panel">
+        <div class="titulo-panel">
+            <div class="icono-titulo"><i class="fa-solid fa-money-bill-transfer"></i></div>
+
+            <div>
+                <h2>REGISTRAR EGRESO</h2>
+                <p>Compra de productos para el store, sueldos de profesores y recepcionistas u otros gastos.</p>
+            </div>
+        </div>
+
+        <form id="formEgreso" novalidate>
+            <div class="caja-form">
+                <div class="campo">
+                    <label for="egCategoria">Tipo de egreso</label>
+                    <select id="egCategoria" required>
+                        <option value="COMPRA_PRODUCTOS">Compra de productos</option>
+                        <option value="SUELDO_PROFESOR">Sueldo de profesor</option>
+                        <option value="SUELDO_RECEPCIONISTA">Sueldo de recepcionista</option>
+                        <option value="OTRO_EGRESO">Otro gasto</option>
+                    </select>
+                </div>
+
+                <div class="campo" id="egBloqueBeneficiario">
+                    <label for="egBeneficiario" id="egBeneficiarioEtiqueta">Proveedor (opcional)</label>
+                    <input type="text" id="egBeneficiario" maxlength="100" autocomplete="off"
+                           list="egRecepcionistas" placeholder="Nombre">
+                    <datalist id="egRecepcionistas"></datalist>
+                </div>
+
+                <div class="campo" id="egBloqueProducto">
+                    <label for="egProducto">Producto del store (opcional)</label>
+                    <select id="egProducto">
+                        <option value="">Sin producto: otra compra</option>
+                    </select>
+                </div>
+
+                <div class="campo" id="egBloqueCantidad">
+                    <label for="egCantidad">Unidades compradas</label>
+                    <input type="number" id="egCantidad" min="1" max="1000000" step="1" inputmode="numeric" placeholder="Cantidad">
+                </div>
+
+                <div class="campo caja-campo-ancho">
+                    <label for="egConcepto" id="egConceptoEtiqueta">Concepto</label>
+                    <input type="text" id="egConcepto" maxlength="150" autocomplete="off" placeholder="Detalle del gasto">
+                </div>
+
+                <div class="campo">
+                    <label for="egMonto">Monto total</label>
+                    <input type="text" id="egMonto" inputmode="decimal" autocomplete="off" placeholder="0,00" required>
+                </div>
+
+                <div class="campo">
+                    <label for="egFecha">Fecha</label>
+                    <input type="date" id="egFecha">
+                </div>
+
+                <div class="campo">
+                    <label for="egMedio">Medio de pago</label>
+                    <select id="egMedio">
+                        <option value="">Sin indicar</option>
+                        <option value="EFECTIVO">Efectivo</option>
+                        <option value="TRANSFERENCIA">Transferencia</option>
+                        <option value="DEBITO">Tarjeta de débito</option>
+                        <option value="CREDITO">Tarjeta de crédito</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </div>
+            </div>
+
+            <p id="egAyuda" class="caja-ayuda"></p>
+            <p id="egError" class="caja-error" role="alert" hidden></p>
+
+            <div class="acciones-formulario">
+                <button type="submit" class="btn-guardar" id="btnRegistrarEgreso">Registrar egreso</button>
+                <button type="button" class="btn-cancelar" id="btnLimpiarEgreso">Limpiar</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- MOVIMIENTOS -->
+    <section class="panel">
+        <div class="titulo-tabla">
+            <div>
+                <p class="seccion">MOVIMIENTOS</p>
+                <h2>Ingresos y egresos</h2>
+            </div>
+
+            <button type="button" class="btn-cancelar" id="btnActualizarCaja">Actualizar</button>
+        </div>
+
+        <div class="caja-periodos" role="group" aria-label="Período">
+            <button type="button" class="caja-periodo" data-periodo="hoy">Hoy</button>
+            <button type="button" class="caja-periodo" data-periodo="semana">Últimos 7 días</button>
+            <button type="button" class="caja-periodo" data-periodo="mes">Este mes</button>
+            <button type="button" class="caja-periodo" data-periodo="mesAnterior">Mes anterior</button>
+            <button type="button" class="caja-periodo" data-periodo="todo">Todo</button>
+        </div>
+
+        <div class="caja-filtros">
+            <div class="campo">
+                <label for="cjDesde">Desde</label>
+                <input type="date" id="cjDesde">
+            </div>
+
+            <div class="campo">
+                <label for="cjHasta">Hasta</label>
+                <input type="date" id="cjHasta">
+            </div>
+
+            <div class="campo">
+                <label for="cjTipo">Tipo</label>
+                <select id="cjTipo">
+                    <option value="TODOS">Ingresos y egresos</option>
+                    <option value="INGRESO">Solo ingresos</option>
+                    <option value="EGRESO">Solo egresos</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="cjCategoria">Categoría</label>
+                <select id="cjCategoria">
+                    <option value="TODAS">Todas</option>
+                    <option value="CUOTA">Cuotas de socios</option>
+                    <option value="VENTA">Ventas del store</option>
+                    <option value="COMPRA_PRODUCTOS">Compras de productos</option>
+                    <option value="SUELDO_PROFESOR">Sueldos de profesores</option>
+                    <option value="SUELDO_RECEPCIONISTA">Sueldos de recepcionistas</option>
+                    <option value="OTRO_EGRESO">Otros gastos</option>
+                </select>
+            </div>
+
+            <div class="campo caja-filtro-buscar">
+                <label for="cjBuscar">Buscar</label>
+                <input type="text" id="cjBuscar" autocomplete="off" placeholder="Concepto o persona">
+            </div>
+        </div>
+
+        <!-- DESGLOSE POR CATEGORÍA -->
+        <div id="cajaDesglose" class="caja-desglose" aria-label="Desglose por categoría"></div>
+
+        <div class="tabla-contenedor tabla-caja">
+            <table>
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Categoría</th>
+                    <th>Concepto</th>
+                    <th>Monto</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody id="tablaCaja"></tbody>
+            </table>
+
+            <div class="tabla-vacia" id="cajaVacia">
+                <p id="cajaVaciaTitulo">No hay movimientos en este período.</p>
+                <span id="cajaVaciaTexto">Probá con otro período o registrá un egreso.</span>
+            </div>
+        </div>
+
+        <div id="cajaResumen" class="caja-resumen"></div>
+    </section>
+
+</div>
+<!-- FIN DE VISTA DE CAJA -->
+</main>
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
+
+<script src="/js/notificaciones.js"></script>
+<script src="../js/caja.js"></script>
+</body>
+</html>

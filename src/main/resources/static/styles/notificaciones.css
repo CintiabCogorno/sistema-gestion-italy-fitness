@@ -1,0 +1,167 @@
+
+/* ===================================
+   ITALY FITNESS - NOTIFICACIONES
+=================================== */
+
+:root {
+    --notif-verde: #73ff38;
+    --notif-fondo: #080d0a;
+    --notif-panel: #111a14;
+    --notif-texto: #f5f7f5;
+    --notif-suave: #b8c2bc;
+    --notif-rojo: #ff4545;
+    --notif-amarillo: #e9a82f;
+    --notif-azul: #38aaff;
+}
+
+/* Fondo de la ventana */
+
+.notif-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 20px;
+    animation: notifFadeIn 0.2s ease;
+}
+
+/* Ventana */
+
+.notif-modal {
+    width: 100%;
+    max-width: 420px;
+    background: var(--notif-panel);
+    border: 1px solid #29352d;
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    color: var(--notif-texto);
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 15px 50px rgba(0,0,0,.5);
+    animation: notifZoom 0.25s ease;
+}
+
+/* Icono */
+
+.notif-icono {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 18px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.notif-success .notif-icono {
+    color: var(--notif-verde);
+    background: rgba(115,255,56,.12);
+}
+
+.notif-error .notif-icono {
+    color: var(--notif-rojo);
+    background: rgba(255,69,69,.12);
+}
+
+.notif-warning .notif-icono {
+    color: var(--notif-amarillo);
+    background: rgba(233,168,47,.12);
+}
+
+.notif-info .notif-icono {
+    color: var(--notif-azul);
+    background: rgba(56,170,255,.12);
+}
+
+/* Textos */
+
+.notif-modal h2 {
+    font-size: 21px;
+    margin: 0 0 12px;
+    font-weight: 400;
+}
+
+.notif-modal p {
+    color: var(--notif-suave);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+/* Botones */
+
+.notif-acciones {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.notif-btn {
+    border: none;
+    border-radius: 9px;
+    padding: 12px 24px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.notif-btn-primary {
+    background: var(--notif-verde);
+    color: var(--notif-fondo);
+}
+
+.notif-btn-primary:hover {
+    background: #8aff5c;
+    transform: translateY(-2px);
+}
+
+.notif-btn-secondary {
+    background: #29352d;
+    color: white;
+}
+
+.notif-btn-secondary:hover {
+    background: #39483d;
+}
+
+/* Animaciones */
+
+@keyframes notifFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes notifZoom {
+    from {
+        opacity: 0;
+        transform: scale(.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Adaptación a celulares */
+
+@media (max-width: 480px) {
+    .notif-modal {
+        padding: 24px 18px;
+    }
+
+    .notif-acciones {
+        flex-direction: column;
+    }
+
+    .notif-btn {
+        width: 100%;
+    }
+}

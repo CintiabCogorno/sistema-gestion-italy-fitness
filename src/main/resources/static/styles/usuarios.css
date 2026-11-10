@@ -1,0 +1,289 @@
+/* =========================================================
+   USUARIOS (solo administrador)
+========================================================= */
+
+#vistaUsuarios [hidden] {
+    display: none !important;
+}
+
+#vistaUsuarios .descripcion,
+#vistaUsuarios .titulo-panel p {
+    color: var(--texto-suave);
+}
+
+#vistaUsuarios .campo label {
+    color: var(--texto);
+}
+
+#vistaUsuarios .campo input {
+    width: 100%;
+    padding: 13px 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    font-size: 14px;
+    outline: none;
+}
+
+#vistaUsuarios .campo input::placeholder {
+    color: var(--texto-tenue);
+}
+
+#vistaUsuarios .campo input:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 2px var(--verde-fondo);
+}
+
+#vistaUsuarios .formulario {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+#vistaUsuarios .btn-cancelar {
+    color: var(--texto-suave);
+    border-color: var(--borde-fuerte);
+}
+
+/* ---------- Mensajes ---------- */
+.usr-mensaje {
+    margin-bottom: 20px;
+    padding: 13px 16px;
+    border-radius: var(--radio-sm);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.usr-mensaje-ok {
+    background: var(--verde-fondo);
+    border: 1px solid var(--verde-borde);
+    color: var(--verde);
+}
+
+.usr-mensaje-error {
+    background: var(--rojo-fondo);
+    border: 1px solid var(--rojo-borde);
+    color: var(--rojo-texto);
+}
+
+/* ---------- Tabla ---------- */
+.tabla-usuarios table {
+    table-layout: auto;
+    min-width: 820px;
+}
+
+.tabla-usuarios table th,
+.tabla-usuarios table td {
+    width: auto;
+    text-align: left;
+}
+
+.usr-nombre {
+    font-weight: 700;
+    color: var(--texto);
+}
+
+.usr-muted {
+    color: var(--texto-tenue);
+    font-size: 12px;
+}
+
+.usr-inactivo td {
+    opacity: .6;
+}
+
+.usr-inactivo td:nth-child(5),
+.usr-inactivo td:last-child {
+    opacity: 1;
+}
+
+.usr-rol {
+    display: inline-block;
+    padding: 4px 9px;
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio-sm);
+    color: var(--texto-suave);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.usr-rol-admin {
+    border-color: var(--verde-borde);
+    color: var(--verde);
+}
+
+.usr-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.usr-btn {
+    padding: 7px 12px;
+    background: transparent;
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.usr-btn:hover {
+    border-color: var(--verde);
+    color: var(--verde);
+}
+
+.usr-btn-baja {
+    border-color: var(--rojo-borde);
+    color: var(--rojo-texto);
+}
+
+.usr-btn-baja:hover {
+    background: var(--rojo);
+    border-color: var(--rojo);
+    color: var(--negro);
+}
+
+.usr-btn-alta {
+    border-color: var(--verde-borde);
+    color: var(--verde);
+}
+
+.usr-btn-alta:hover {
+    background: var(--verde);
+    color: var(--negro);
+}
+
+/* ---------- Ventana de contraseña ---------- */
+.usr-fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .78);
+}
+
+.usr-modal {
+    width: 100%;
+    max-width: 420px;
+    padding: 26px;
+    background: var(--superficie);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio-lg);
+    color: var(--texto);
+}
+
+.usr-modal h2 {
+    margin-bottom: 8px;
+}
+
+.usr-ayuda {
+    margin-bottom: 14px;
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+.usr-modal label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.usr-modal input {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--fondo);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: var(--radio-sm);
+    color: var(--texto);
+    font-size: 14px;
+    outline: none;
+}
+
+.usr-modal input:focus {
+    border-color: var(--verde);
+}
+
+.usr-error {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: var(--rojo-fondo);
+    border: 1px solid var(--rojo-borde);
+    border-radius: var(--radio-sm);
+    color: var(--rojo-texto);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.usr-acciones {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.usr-modal .btn-cancelar {
+    color: var(--texto-suave);
+    border-color: var(--borde-fuerte);
+}
+
+@media (max-width: 1000px) {
+    #vistaUsuarios .formulario {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    #vistaUsuarios .formulario {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer  Italy Fitness Gym */
+    .site-footer {
+        box-sizing: border-box;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        padding: 0.35rem 0.75rem;
+        color: #de0bb0;
+        background: #000000;
+        border-top: 1px solid #000000;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.68rem;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    .site-footer__logo {
+        display: block;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 20px;
+        object-fit: contain;
+    }
+    .site-footer__text {
+        margin: 0;
+    }
+
+    @media (max-width: 420px) {
+        .site-footer {
+            gap: 0.3rem;
+            padding-inline: 0.4rem;
+            font-size: 0.6rem;
+        }
+
+        .site-footer__logo {
+            width: 16px;
+            height: 16px;
+            flex-basis: 16px;
+        }
+}

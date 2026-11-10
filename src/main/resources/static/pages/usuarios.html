@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Gestión de Usuarios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/tema.css">
+    <link rel="stylesheet" href="../styles/estilos.css">
+    <link rel="stylesheet" href="../styles/usuarios.css">
+    <link rel="stylesheet" href="/styles/notificaciones.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="../js/sesion.js"></script>
+</head>
+<body>
+<aside class="sidebar">
+    <div class="logo">
+        <img src="../img/logo-Italy-Fitness-transparente.png" alt="Logo Italy Fitness" class="logo-gym">
+    </div>
+
+    <p class="subtitulo">SISTEMA DE GESTIÓN</p>
+    <nav>
+        <a href="../index.html"><i class="fa-solid fa-gauge"></i> Inicio</a>
+        <a href="./socios.html" id="navSocios"><i class="fa-solid fa-users"></i> Socios</a>
+        <a href="./pagos.html" id="navPagos"><i class="fa-solid fa-credit-card"></i> Pagos</a>
+        <a href="./actividades.html" id="navActividades"><i class="fa-solid fa-dumbbell"></i> Actividades</a>
+        <a href="./acceso.html" id="navAccesos"><i class="fa-solid fa-door-open"></i> Acceso</a>
+        <a href="./productos.html" id="navProductos"><i class="fa-solid fa-box"></i> Productos</a>
+        <a href="./ventas.html" id="navVentas"><i class="fa-solid fa-cash-register"></i> Ventas</a>
+        <a href="./promociones.html" id="navPromociones"><i class="fa-solid fa-tags"></i> Promociones</a>
+        <a href="./caja.html" id="navCaja"><i class="fa-solid fa-vault"></i> Caja</a>
+    </nav>
+</aside>
+<main class="contenido">
+    <div id="vistaUsuarios">
+
+        <header class="encabezado">
+            <div>
+                <p class="seccion">USUARIOS</p>
+                <h1>GESTION DE USUARIOS</h1>
+                <p class="descripcion">
+                    Cuentas del personal que usa el sistema. Esta pantalla es solo del administrador.
+                </p>
+            </div>
+
+            <div class="usuario">
+                <i class="fa-solid fa-user"></i>
+                <span>Administrador</span>
+            </div>
+        </header>
+
+        <div id="usrMensaje" class="usr-mensaje" role="status" aria-live="polite" hidden></div>
+
+        <!-- CREAR RECEPCIONISTA -->
+        <section class="panel">
+            <div class="titulo-panel">
+                <div class="icono-titulo"><i class="fa-solid fa-user-plus"></i></div>
+
+                <div>
+                    <h2>CREAR RECEPCIONISTA</h2>
+                    <p>La recepción puede registrar socios y vender. El administrador es único y no se crea desde acá.</p>
+                </div>
+            </div>
+
+            <form id="formUsuario" novalidate>
+                <div class="formulario">
+                    <div class="campo">
+                        <label for="usrNombre">Nombre</label>
+                        <input type="text" id="usrNombre" maxlength="50" autocomplete="off" placeholder="Nombre" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="usrApellido">Apellido</label>
+                        <input type="text" id="usrApellido" maxlength="50" autocomplete="off" placeholder="Apellido" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="usrDni">DNI</label>
+                        <input type="text" id="usrDni" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="Sin puntos" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="usrTelefono">Teléfono (opcional)</label>
+                        <input type="tel" id="usrTelefono" maxlength="20" autocomplete="off" placeholder="Teléfono">
+                    </div>
+
+                    <div class="campo">
+                        <label for="usrUsuario">Usuario</label>
+                        <input type="text" id="usrUsuario" maxlength="30" autocomplete="off" autocapitalize="none"
+                               spellcheck="false" placeholder="Ej.: lucia.gomez" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="usrClave">Contraseña inicial</label>
+                        <input type="password" id="usrClave" maxlength="72" autocomplete="new-password"
+                               placeholder="Mínimo 8, con letras y números" required>
+                    </div>
+                </div>
+
+                <div class="acciones-formulario">
+                    <button type="submit" class="btn-guardar" id="btnCrearUsuario">Crear usuario</button>
+                    <button type="button" class="btn-cancelar" id="btnLimpiarUsuario">Limpiar</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- LISTA DE USUARIOS -->
+        <section class="panel">
+            <div class="titulo-tabla">
+                <div>
+                    <p class="seccion">CUENTAS</p>
+                    <h2>Usuarios del sistema</h2>
+                </div>
+
+                <div class="cantidad">
+                    <span id="usrCantidad">0</span>
+                    usuarios
+                </div>
+            </div>
+
+            <div class="tabla-contenedor tabla-usuarios">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>DNI</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="usrTabla"></tbody>
+                </table>
+
+                <div class="tabla-vacia" id="usrVacia" hidden>
+                    <p>No hay usuarios para mostrar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA CONTRASEÑA DE UN RECEPCIONISTA -->
+        <div id="usrModal" class="usr-fondo" role="dialog" aria-modal="true" aria-labelledby="usrModalTitulo" hidden>
+            <form id="formClaveUsuario" class="usr-modal" novalidate>
+                <h2 id="usrModalTitulo">Nueva contraseña</h2>
+                <p id="usrModalTexto" class="usr-ayuda"></p>
+
+                <label for="usrNuevaClave">Contraseña nueva</label>
+                <input type="password" id="usrNuevaClave" maxlength="72" autocomplete="new-password"
+                       placeholder="Mínimo 8, con letras y números" required>
+
+                <p id="usrModalError" class="usr-error" role="alert" hidden></p>
+
+                <div class="usr-acciones">
+                    <button type="button" class="btn-cancelar" id="btnUsrCancelar">Cancelar</button>
+                    <button type="submit" class="btn-guardar" id="btnUsrGuardarClave">Guardar contraseña</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
+
+<script src="../js/usuarios.js"></script>
+<script src="/js/notificaciones.js"></script>
+</body>
+</html>

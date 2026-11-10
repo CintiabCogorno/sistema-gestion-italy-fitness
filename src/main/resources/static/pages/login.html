@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy Fitness - Iniciar sesión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/tema.css">
+    <link rel="stylesheet" href="/styles/notificaciones.css">
+    <link rel="stylesheet" href="../styles/login.css">
+</head>
+<body>
+
+<div class="login-fondo" aria-hidden="true"></div>
+<div class="login-velo" aria-hidden="true"></div>
+
+<main class="login-pantalla">
+    <section class="login-caja">
+
+        <img class="login-logo" src="../img/logo-Italy-Fitness-transparente.png" alt="Italy Fitness">
+
+        <h1>INICIAR SESIÓN</h1>
+        <p class="login-sub">Sistema de gestión Italy Fitness</p>
+
+        <form id="formLogin" novalidate>
+            <div class="login-campo">
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" name="usuario" autocomplete="username"
+                       autocapitalize="none" spellcheck="false" maxlength="30"
+                       placeholder="Ingresá tu usuario" autofocus required>
+            </div>
+
+            <div class="login-campo">
+                <label for="clave">Contraseña</label>
+                <div class="login-clave">
+                    <input type="password" id="clave" name="clave" autocomplete="current-password"
+                           maxlength="72" placeholder="Ingresá tu contraseña" required>
+                    <button type="button" id="btnVerClave" aria-pressed="false"
+                            aria-label="Mostrar contraseña">Mostrar</button>
+                </div>
+            </div>
+
+            <div id="loginMensaje" class="login-mensaje" role="alert" aria-live="assertive" hidden></div>
+
+            <button type="submit" id="btnIngresar" class="login-boton">INGRESAR</button>
+        </form>
+
+        <p class="login-pie">Si no tenés usuario u olvidaste tu contraseña, pedíselo al administrador.</p>
+    </section>
+</main>
+<footer class="site-footer">
+    <span>Italy Fitness Gym Control by Cintia Cogorno</span>
+    <img src="/img/milogo%7Bcc%7D.png" class="site-footer__logo">
+</footer>
+
+<script src="/js/notificaciones.js"></script>
+<script src="../js/login.js"></script>
+</body>
+</html>
